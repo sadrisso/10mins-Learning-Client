@@ -1,8 +1,4 @@
-# React + Vite
+client side repo: https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-sadrisso
+server side repo: 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+requirement doc: https://docs.google.com/document/d/1bv6breYKF_AkR2YCMGSnHaMg6jr82bIF_TI5H9gbNpg/edit?usp=sharing

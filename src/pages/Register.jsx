@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 const Register = () => {
     return (
         <div>
-            <div className="hero bg-[#3B1318] min-h-screen text-gray-400">
-                <div className="hero-content flex-col lg:flex-row-reverse py-20 md:py-2">
+            <div className="hero bg-[#3B1318] py-20 text-gray-400">
+                <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="text-center lg:text-left">
                         <h1 className="text-2xl md:text-5xl font-bold">Register now!</h1>
                         <p className="py-6">
@@ -25,6 +25,23 @@ const Register = () => {
                                     <span className="label-text">Email</span>
                                 </label>
                                 <input type="email" placeholder="email" className="input input-bordered" required />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Photo</span>
+                                </label>
+                                <input type="url" placeholder="photo" className="input input-bordered" required />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Role Here</span>
+                                </label>
+                                <select className="select select-bordered w-full max-w-xs">
+                                    <option disabled selected>Role?</option>
+                                    <option>Student</option>
+                                    <option>Tutor</option>
+                                    <option>Admin</option>
+                                </select>
                             </div>
                             <div className="form-control">
                                 <label className="label">

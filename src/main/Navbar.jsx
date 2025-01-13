@@ -6,7 +6,7 @@ const Navbar = () => {
 
 
     return (
-        <div className="flex flex-col md:flex-row md:justify-between p-3 container mx-auto items-center">
+        <div className="flex flex-col md:flex-row md:justify-between p-1 container mx-auto items-center">
             <div className="flex items-center">
                 <img src={logo} alt="" className="w-[55px] h-[55px]" />
                 <span className="font-semibold">Learning</span>

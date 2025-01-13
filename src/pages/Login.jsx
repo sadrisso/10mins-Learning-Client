@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 const Login = () => {
     return (
         <div>
-            <div className="hero bg-[#112047] min-h-screen text-gray-400">
-                <div className="hero-content flex-col lg:flex-row-reverse py-20 md:py-0">
+            <div className="hero bg-[#112047] py-20 md:py-40 text-gray-400">
+                <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="text-center lg:text-left">
                         <h1 className="text-2xl md:text-5xl font-bold">Login now!</h1>
                         <p className="py-6">

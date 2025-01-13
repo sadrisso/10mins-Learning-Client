@@ -13,12 +13,12 @@ const Navbar = () => {
             </div>
 
             <div>
-                <ul className="flex flex-col md:flex-row gap-5 items-center">
+                <ul className="flex gap-3 md:gap-5 items-center">
                     <Link to="/"><li>Home</li></Link>
                     <Link to="/"><li>Home</li></Link>
                     <Link to="/"><li>Home</li></Link>
                     <Link to="/"><li>Home</li></Link>
-                    <button className="btn">LogIn</button>
+                    <Link to="/login"><button className="btn btn-sm md:btn-md bg-[#1CAB55] text-white">LogIn</button></Link>
                 </ul>
             </div>
         </div>
@@ -26,3 +26,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+// #12121A

@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useId } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 import { toast } from 'react-toastify';
+import useAxiosSecure from '../hooks/useAxiosSecure';
 
 
 const Register = () => {
 
     const { createUser, loading, update } = useAuth();
     const navigate = useNavigate();
+    const axiosSecure = useAxiosSecure();
 
     const {
         register,
@@ -17,8 +19,19 @@ const Register = () => {
     } = useForm()
 
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         console.log(data)
+
+
+        const userInfo = {
+            name: data?.name,
+            email: data?.email,
+            photo: data?.photo,
+            role: data?.role
+        }
+
+        const res = await axiosSecure.post("users", userInfo)
+        console.log(res?.data)
 
         createUser(data?.email, data?.password)
             .then(res => {

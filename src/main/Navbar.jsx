@@ -35,7 +35,10 @@ const Navbar = () => {
                     <Link to="/"><li>Home</li></Link>
                     {
                         user ?
-                            <button onClick={handleLogOut} className="bg-[#12214A] btn text-white">LogOut</button>
+                            <>
+                                <button onClick={handleLogOut} className="bg-[#12214A] btn text-white">LogOut</button>
+                                <img src={user?.photoURL} alt="" className="w-[30px] h-[30px] rounded-full"/>
+                            </>
                             : <Link to="/login"><button className="btn btn-sm md:btn-md bg-[#1CAB55] text-white">LogIn</button></Link>
                     }
                 </ul>

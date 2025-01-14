@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.museomoderno-title {
+    font-family: "MuseoModerno", serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.poppins {
+    font-family: "Poppins", serif;
+    font-weight: 400;
+    font-style: normal;
+}

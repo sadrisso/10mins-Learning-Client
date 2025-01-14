@@ -20,8 +20,6 @@ const Register = () => {
 
 
     const onSubmit = async (data) => {
-        console.log(data)
-
 
         const userInfo = {
             name: data?.name,
@@ -30,8 +28,8 @@ const Register = () => {
             role: data?.role
         }
 
-        const res = await axiosSecure.post("users", userInfo)
-        console.log(res?.data)
+        await axiosSecure.post("users", userInfo)
+
 
         createUser(data?.email, data?.password)
             .then(res => {

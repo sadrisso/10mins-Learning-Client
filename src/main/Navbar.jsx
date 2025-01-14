@@ -21,7 +21,7 @@ const Navbar = () => {
     }
 
     return (
-        <div className="flex flex-col md:flex-row md:justify-between p-1 container mx-auto items-center">
+        <div className="flex flex-col md:flex-row md:justify-between p-1 md:container md:mx-auto items-center">
             <div className="flex items-center">
                 <img src={logo} alt="" className="w-[55px] h-[55px]" />
                 <span className="font-semibold">Learning</span>
@@ -30,14 +30,14 @@ const Navbar = () => {
             <div>
                 <ul className="flex gap-3 md:gap-5 items-center">
                     <Link to="/"><li>Home</li></Link>
-                    <Link to="/"><li>Home</li></Link>
-                    <Link to="/"><li>Home</li></Link>
-                    <Link to="/"><li>Home</li></Link>
+                    {
+                        user && <Link to="/dashboard"><li>Dashboard</li></Link>
+                    }
                     {
                         user ?
                             <>
-                                <button onClick={handleLogOut} className="bg-[#12214A] btn text-white">LogOut</button>
-                                <img src={user?.photoURL} alt="" className="w-[30px] h-[30px] rounded-full"/>
+                                <button onClick={handleLogOut} className="bg-[#12214A] btn btn-sm md:btn-md text-white">LogOut</button>
+                                <img src={user?.photoURL} alt="" className="w-[40px] h-[40px] rounded-full"/>
                             </>
                             : <Link to="/login"><button className="btn btn-sm md:btn-md bg-[#1CAB55] text-white">LogIn</button></Link>
                     }

@@ -1,12 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { toast } from "react-toastify";
+import { useState } from "react";
 
 
 const Login = () => {
 
-    const { signIn, loading } = useAuth();
-    const navigate = useNavigate()
+    const { signIn, loading, setLoading } = useAuth();
+    const navigate = useNavigate();
+    const [error, setError] = useState(null);
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -23,6 +25,8 @@ const Login = () => {
             })
             .catch(err => {
                 console.log("ERR: ", err)
+                setError(err)
+                setLoading(false)
             })
     }
     return (
@@ -69,6 +73,9 @@ const Login = () => {
                                     }Login</button>
                             </div>
                         </form>
+                        {
+                            error && <p className="text-red-500 text-center">{error.message}</p>
+                        }
                         <p className="p-2 text-center">New here? <Link to="/register"><span className="text-blue-700">Register</span></Link></p>
                     </div>
                 </div>

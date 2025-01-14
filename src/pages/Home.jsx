@@ -19,7 +19,6 @@ const Home = () => {
     })
 
 
-
     return (
         <div>
             <div>
@@ -28,7 +27,7 @@ const Home = () => {
 
             <div>
                 <SectionTitle heading="Study Sessions" subHeading="let's start your study" />
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 container mx-auto py-10'>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 md:container md:mx-auto py-10'>
                     {
                         sessions.map((item, i) => <StudySessionCard key={i} item={item} />)
                     }

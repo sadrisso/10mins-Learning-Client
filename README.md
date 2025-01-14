@@ -1,3 +1,30 @@
+## Website Name:
+- 10mins Learning
+
+### Admin User Name:
+- 
+
+### Password:
+-
+
+### Features: 
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+
+
+
 client side repo: https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-sadrisso
 server side repo: 
 

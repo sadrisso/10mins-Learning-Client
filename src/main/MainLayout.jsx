@@ -8,7 +8,7 @@ const MainLayout = () => {
 
 
     return (
-        <div className="poppins">
+        <div className="poppins overflow-hidden">
             <div>
                 <Navbar />
             </div>

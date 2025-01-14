@@ -4,7 +4,7 @@ const StudySessionCard = ({ item }) => {
 
     return (
         <div>
-            <div className="card bg-base-100 border h-[300px] w-[370px]">
+            <div className="card bg-base-100 border h-[300px] md:w-[370px]">
                 <div className="card-body">
                     <h2 className="card-title">{item?.title}</h2>
                     <p>{item?.description}</p>

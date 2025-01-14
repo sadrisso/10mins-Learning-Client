@@ -1,9 +1,14 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
+import { toast } from 'react-toastify';
 
 
 const Register = () => {
+
+    const { createUser, loading, update } = useAuth();
+    const navigate = useNavigate();
 
     const {
         register,
@@ -14,6 +19,16 @@ const Register = () => {
 
     const onSubmit = (data) => {
         console.log(data)
+
+        createUser(data?.email, data?.password)
+            .then(res => {
+                toast.success("Successfully Registered")
+                navigate("/")
+                update({displayName: data?.name, photoURL: data?.photo})
+            })
+            .catch(err => {
+                console.log("ERR: ", err)
+            })
     }
 
 
@@ -110,7 +125,10 @@ const Register = () => {
                                 }
                             </div>
                             <div className="form-control mt-6">
-                                <button className="btn btn-neutral">Register</button>
+                                <button className="btn btn-neutral">
+                                    {loading &&
+                                        <span className="loading loading-spinner loading-xs"></span>
+                                    }Register</button>
                             </div>
                         </form>
                         <p className='text-center p-2'>Have an account? <Link to="/login"><span className="text-blue-700">Login</span></Link></p>

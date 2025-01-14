@@ -1,9 +1,24 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../public/img/10minLogo.jpg"
+import useAuth from "../hooks/useAuth";
+import { toast } from "react-toastify";
 
 
 const Navbar = () => {
 
+    const { logOut, user } = useAuth()
+    const navigate = useNavigate()
+
+    console.log(user)
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => {
+                toast.warning("Logged Out")
+                navigate("/login")
+                console.log("Successfully Logged Out")
+            })
+    }
 
     return (
         <div className="flex flex-col md:flex-row md:justify-between p-1 container mx-auto items-center">
@@ -18,7 +33,11 @@ const Navbar = () => {
                     <Link to="/"><li>Home</li></Link>
                     <Link to="/"><li>Home</li></Link>
                     <Link to="/"><li>Home</li></Link>
-                    <Link to="/login"><button className="btn btn-sm md:btn-md bg-[#1CAB55] text-white">LogIn</button></Link>
+                    {
+                        user ?
+                            <button onClick={handleLogOut} className="bg-[#12214A] btn text-white">LogOut</button>
+                            : <Link to="/login"><button className="btn btn-sm md:btn-md bg-[#1CAB55] text-white">LogIn</button></Link>
+                    }
                 </ul>
             </div>
         </div>

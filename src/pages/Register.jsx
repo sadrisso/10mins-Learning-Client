@@ -1,7 +1,22 @@
 import React from 'react';
+import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
+
 const Register = () => {
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm()
+
+
+    const onSubmit = (data) => {
+        console.log(data)
+    }
+
+
     return (
         <div>
             <div className="hero bg-[#3B1318] py-20 text-gray-400">
@@ -13,41 +28,86 @@ const Register = () => {
                         </p>
                     </div>
                     <div className="card bg-base-300 w-full max-w-sm shrink-0 shadow-2xl">
-                        <form className="card-body">
+                        <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Name</span>
                                 </label>
-                                <input type="text" placeholder="name" className="input input-bordered" required />
+                                <input
+                                    {...register("name", { required: true })}
+                                    name='name'
+                                    type="text"
+                                    placeholder="name"
+                                    className="input input-bordered"
+                                />
+                                {
+                                    errors.name?.type === "required" && <p className='text-red-500'>name is required</p>
+                                }
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
-                                <input type="email" placeholder="email" className="input input-bordered" required />
+                                <input
+                                    {...register("email", { required: true })}
+                                    name='email'
+                                    type="email"
+                                    placeholder="email"
+                                    className="input input-bordered"
+                                />
+                                {
+                                    errors.email?.type === "required" && <p className='text-red-500'>email is required</p>
+                                }
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Photo</span>
                                 </label>
-                                <input type="url" placeholder="photo" className="input input-bordered" required />
+                                <input
+                                    {...register("photo", { required: true })}
+                                    name='photo'
+                                    type="url"
+                                    placeholder="photo"
+                                    className="input input-bordered"
+                                />
+                                {
+                                    errors.photo?.type === "required" && <p className='text-red-500'>photo url is required</p>
+                                }
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Role Here</span>
                                 </label>
-                                <select className="select select-bordered w-full max-w-xs">
-                                    <option disabled selected>Role?</option>
+                                <select className="select select-bordered w-full max-w-xs"
+                                    defaultValue="role"
+                                    {...register("role", { required: true })}
+                                    name='role'>
+                                    <option value="role" disabled>Role?</option>
                                     <option>Student</option>
                                     <option>Tutor</option>
                                     <option>Admin</option>
                                 </select>
+                                {
+                                    errors.role?.type === "required" && <p className='text-red-500'>please select a role</p>
+                                }
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="password" placeholder="password" className="input input-bordered" required />
+                                <input
+                                    {...register("password", { required: true, minLength: 6 })}
+                                    name='password'
+                                    type="password"
+                                    placeholder="password"
+                                    className="input input-bordered"
+                                />
+                                {
+                                    errors.password?.type === "required" && <p className='text-red-500'>password is required</p>
+                                }
+                                {
+                                    errors.password?.type === "minLength" && <p className='text-red-500'>password must be at least 6 character</p>
+                                }
                             </div>
                             <div className="form-control mt-6">
                                 <button className="btn btn-neutral">Register</button>

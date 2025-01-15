@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
+import { FaHome } from 'react-icons/fa';
 
 const Dashboard = () => {
 
-    const {user} = useAuth()
+    const { user } = useAuth()
 
     return (
         <div>
@@ -14,7 +15,8 @@ const Dashboard = () => {
                 </div>
                 <div className="flex-none">
                     <ul className="menu menu-horizontal px-1">
-                        <Link to="/"><li><a>Home</a></li></Link>
+                        <Link to="/"><li><a><FaHome className='text-[16px]'/></a></li></Link>
+                        <Link to="/dashboard"><li><a>Home</a></li></Link>
                         <li>
                             <details>
                                 <summary>{user?.displayName}</summary>
@@ -28,7 +30,7 @@ const Dashboard = () => {
                     </ul>
                 </div>
             </div>
-            <div className='bg-[#112048] h-[1000px]'>
+            <div className='bg-[#112048]'>
                 <Outlet />
             </div>
         </div>

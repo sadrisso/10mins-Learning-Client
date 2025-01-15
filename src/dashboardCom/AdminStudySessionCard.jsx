@@ -8,12 +8,24 @@ const AdminStudySessionCard = ({ item }) => {
         document.getElementById('my_modal_1').showModal()
     }
 
+    const { sessionTitle,
+        tutorName,
+        tutorEmail,
+        sessionDescription,
+        regStartDate, regEndDate,
+        classStartDate,
+        classEndDate,
+        sessionDuration,
+        registrationFee,
+        status } = item;
+
     return (
         <div>
             <div className="card bg-base-200 border h-[300px] md:w-[370px]">
                 <div className="card-body">
-                    <h2 className="card-title">{item?.title}</h2>
-                    <p>{item?.description}</p>
+                    <h2 className="card-title">{sessionTitle}</h2>
+                    <p>{sessionDescription}</p>
+                    <p>Status: {status}</p>
                     <div className="card-actions justify-end">
                         <button className="btn btn-xs btn-success" onClick={handleOpenModal}>Accept</button>
                         <button className="btn btn-xs btn-error">Reject</button>

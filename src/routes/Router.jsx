@@ -6,6 +6,9 @@ import Register from "../pages/Register";
 import Dashboard from "../pages/Dashboard";
 import StudySession from "../dashboardCom/StudySession";
 import AllStudySessions from "../dashboardCom/AllStudySessions";
+import Banner1 from "../components/Banner1";
+import PrivateRoute from "./PrivateRoute";
+import SessionDetails from "../dashboardCom/SessionDetails";
 
 export const router = createBrowserRouter([
     {
@@ -31,12 +34,21 @@ export const router = createBrowserRouter([
         element: <Dashboard />,
         children: [
             {
+                path: "/dashboard",
+                element: <Banner1 />
+            },
+            {
                 path: "studySession",
                 element: <StudySession />
             },
             {
                 path: "viewStudySessions",
-                element: <AllStudySessions />
+                element: <PrivateRoute><AllStudySessions /></PrivateRoute>
+            },
+            {
+                path: "sessionDetails/:id",
+                element: <SessionDetails />,
+                // loader: ({params}) => fetch(`http://localhost:5000/studySession/${params.id}`)
             }
         ]
     }

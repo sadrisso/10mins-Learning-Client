@@ -20,6 +20,8 @@ const Register = () => {
 
     const onSubmit = async (data) => {
 
+        const userRole = data?.role;
+
         const userInfo = {
             name: data?.name,
             email: data?.email,

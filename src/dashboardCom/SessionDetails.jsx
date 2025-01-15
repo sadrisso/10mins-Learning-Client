@@ -7,16 +7,18 @@ import { FaBook } from "react-icons/fa";
 
 const SessionDetails = () => {
 
+    const axiosSecure = useAxiosSecure()
     const [data, setData] = useState({})
     const [isLoading, setIsLoading] = useState(true)
     const { id } = useParams()
-    const axiosSecure = useAxiosSecure()
+
 
     axiosSecure.get(`/studySession/${id}`)
         .then(res => {
             setData(res?.data)
             setIsLoading(false)
         })
+
 
     const { sessionTitle,
         tutorName,

@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
 
 const Dashboard = () => {
 
+    const {user} = useAuth()
 
     return (
         <div>
@@ -15,9 +17,10 @@ const Dashboard = () => {
                         <Link to="/"><li><a>Home</a></li></Link>
                         <li>
                             <details>
-                                <summary>Parent</summary>
+                                <summary>{user?.displayName}</summary>
                                 <ul className="bg-base-100 rounded-t-none p-2">
                                     <Link to="/dashboard/studySession"><li><a>Create Study Session</a></li></Link>
+                                    <Link to="/dashboard/viewStudySessions"><li><a>All Study Session</a></li></Link>
                                     <li><a>Link 2</a></li>
                                 </ul>
                             </details>

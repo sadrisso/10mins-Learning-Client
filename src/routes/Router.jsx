@@ -5,6 +5,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Dashboard from "../pages/Dashboard";
 import StudySession from "../dashboardCom/StudySession";
+import AllStudySessions from "../dashboardCom/AllStudySessions";
 
 export const router = createBrowserRouter([
     {
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
             {
                 path: "studySession",
                 element: <StudySession />
+            },
+            {
+                path: "viewStudySessions",
+                element: <AllStudySessions />
             }
         ]
     }

@@ -152,8 +152,8 @@ const StudySession = () => {
                 </div>
                 <div className="space-y-3 md:space-y-1">
                     <select
-                        {...register("pending", { required: true })}
-                        name="pending"
+                        {...register("status", { required: true })}
+                        name="status"
                         defaultValue="pending"
                         className="select select-bordered w-full max-w-xs">
                         <option value="pending">Pending</option>

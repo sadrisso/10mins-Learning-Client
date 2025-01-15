@@ -13,7 +13,7 @@ const Home = () => {
     const { data: sessions = [] } = useQuery({
         queryKey: ["sessions"],
         queryFn: async () => {
-            const res = await axiosPublic.get("studySessions")
+            const res = await axiosPublic.get("approvedStudySessions")
             return res?.data
         }
     })

@@ -11,8 +11,8 @@ import PrivateRoute from "./PrivateRoute";
 import SessionDetails from "../dashboardCom/SessionDetails";
 import AllBookedSessions from "../dashboardCom/AllBookedSessions";
 import CreateNote from "../dashboardCom/CreateNote";
-import ManageNotes from "../dashboardCom/ManageNotes";
 import AllStudyMaterialByTutor from "../dashboardCom/AllStudyMaterialByTutor";
+import PersonalNote from "../dashboardCom/PersonalNote";
 
 export const router = createBrowserRouter([
     {
@@ -58,8 +58,8 @@ export const router = createBrowserRouter([
                 element: <PrivateRoute><CreateNote /></PrivateRoute>
             },
             {
-                path: "manageNote",
-                element: <PrivateRoute><ManageNotes /></PrivateRoute>
+                path: "personalNotes",
+                element: <PersonalNote />
             },
             {
                 path: "allStudyMaterialByTutor",

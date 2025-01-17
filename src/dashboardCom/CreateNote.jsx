@@ -2,12 +2,14 @@ import { useForm } from "react-hook-form";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const CreateNote = () => {
 
     const { user } = useAuth()
     const axiosSecure = useAxiosSecure()
+    const navigate = useNavigate()
 
     const {
         register,
@@ -35,7 +37,7 @@ const CreateNote = () => {
                 showConfirmButton: false,
                 timer: 1500
             });
-            reset()
+            navigate("/dashboard/personalNotes")
         }
     }
 
@@ -43,6 +45,7 @@ const CreateNote = () => {
         <div className="text-white md:min-h-screen h-[500px]">
             <div className="text-center pt-10">
                 <h1 className="font-semibold text-2xl md:text-4xl ">Create Your Note Here</h1>
+                <Link to="/dashboard/personalNotes"><li className='hover:cursor-pointer text-gray-500 hover:text-red-500 rounded-md list-none'><a>Manage personal notes</a></li></Link>
                 <form className="text-black" onSubmit={handleSubmit(onSubmit)}>
                     <div className="md:border p-2 w-full md:w-[600px] md:mx-auto mt-5 space-y-3 md:p-10">
                         <div>

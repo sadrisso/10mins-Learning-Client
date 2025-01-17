@@ -3,13 +3,15 @@ import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../hooks/useAxiosSecure';
 import SectionTitle from '../components/SectionTitle';
 import { FaPen, FaTrash } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { IoChevronBackCircleSharp } from 'react-icons/io5';
 
 
 const PersonalNote = () => {
 
     const axiosSecure = useAxiosSecure();
+    const navigate = useNavigate();
 
     const { data: notes = [], refetch } = useQuery({
         queryKey: ["notes"],
@@ -41,13 +43,14 @@ const PersonalNote = () => {
                 }
             }
         });
-
-        refetch()
     }
+
+    const handleBack = () => navigate(-1)
 
 
     return (
         <div className='text-white mx-auto'>
+            <p className="p-3" onClick={handleBack}><IoChevronBackCircleSharp className="text-3xl text-white m-2" /></p>
             <div>
                 <SectionTitle subHeading="all your notes here" heading="Personal Notes" />
                 <Link to="/dashboard/createNote"><li className='hover:cursor-pointer text-center list-none text-gray-500 hover:text-red-500 rounded-md'><a>Create Note</a></li></Link>
@@ -63,7 +66,7 @@ const PersonalNote = () => {
                                     <p>{note?.description}</p>
                                     <p>{note?.email}</p>
                                     <div className="card-actions justify-end">
-                                        <button className="btn btn-ghost"><FaPen /></button>
+                                        <Link to={`/dashboard/updateNote/${note._id}`}><button className="btn btn-ghost"><FaPen /></button></Link>
                                         <button onClick={() => handleRemove(note?._id)} className="btn btn-ghost"><FaTrash /></button>
                                     </div>
                                 </div>

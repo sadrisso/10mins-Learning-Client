@@ -1,13 +1,15 @@
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useState } from "react";
 import SectionTitle from "../components/SectionTitle";
 import { FaBook } from "react-icons/fa";
+import { IoChevronBackCircleSharp } from "react-icons/io5";
 
 
 const SessionDetails = () => {
 
     const axiosSecure = useAxiosSecure()
+    const navigate = useNavigate()
     const [data, setData] = useState({})
     const [isLoading, setIsLoading] = useState(true)
     const { id } = useParams()
@@ -31,8 +33,11 @@ const SessionDetails = () => {
         registrationFee,
         status } = data;
 
+    const handleBack = () => navigate(-1)
+
     return (
         <div>
+            <p className="p-3" onClick={handleBack}><IoChevronBackCircleSharp className="text-3xl text-white m-2" /></p>
             <div className="container mx-auto h-[600px] md:min-h-screen text-white">
                 <SectionTitle heading="session details" subHeading="let's book your dream session" />
                 <div className="text-center md:border md:w-[500px] bg-[#0B1F24] md:mx-auto p-2 md:p-5 mx-5">

@@ -13,6 +13,7 @@ import AllBookedSessions from "../dashboardCom/AllBookedSessions";
 import CreateNote from "../dashboardCom/CreateNote";
 import AllStudyMaterialByTutor from "../dashboardCom/AllStudyMaterialByTutor";
 import PersonalNote from "../dashboardCom/PersonalNote";
+import UpdateNote from "../dashboardCom/UpdateNote";
 
 export const router = createBrowserRouter([
     {
@@ -60,6 +61,11 @@ export const router = createBrowserRouter([
             {
                 path: "personalNotes",
                 element: <PersonalNote />
+            },
+            {
+                path: "updateNote/:id",
+                element: <UpdateNote />,
+                loader: ({ params }) => fetch(`http://localhost:5000/myNotes/${params.id}`)
             },
             {
                 path: "allStudyMaterialByTutor",

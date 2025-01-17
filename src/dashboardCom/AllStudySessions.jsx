@@ -3,10 +3,13 @@ import SectionTitle from '../components/SectionTitle';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../hooks/useAxiosSecure';
 import AdminStudySessionCard from './AdminStudySessionCard';
+import { IoChevronBackCircleSharp } from 'react-icons/io5';
+import { useNavigate } from 'react-router-dom';
 
 const AllStudySessions = () => {
 
     const axiosSecure = useAxiosSecure()
+    const navigate = useNavigate()
     const [isLoading, setIsLoading] = useState(true)
 
     const { data: allSessions = [] } = useQuery({
@@ -18,8 +21,11 @@ const AllStudySessions = () => {
         }
     })
 
+    const handleBack = () => navigate(-1)
+
     return (
         <div>
+            <p className="p-3" onClick={handleBack}><IoChevronBackCircleSharp className="text-3xl text-white m-2" /></p>
             {
                 isLoading ? <div><p className='text-white text-center text-5xl p-10'>Please Wait</p></div> :
                     <div>

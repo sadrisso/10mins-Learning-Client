@@ -3,6 +3,7 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
+import { IoChevronBackCircleSharp } from "react-icons/io5";
 
 
 const CreateNote = () => {
@@ -13,7 +14,6 @@ const CreateNote = () => {
 
     const {
         register,
-        reset,
         handleSubmit,
         formState: { errors },
     } = useForm()
@@ -41,8 +41,11 @@ const CreateNote = () => {
         }
     }
 
+    const handleBack = () => navigate(-1)
+
     return (
         <div className="text-white md:min-h-screen h-[500px]">
+            <p className="p-3" onClick={handleBack}><IoChevronBackCircleSharp className="text-3xl text-white m-2" /></p>
             <div className="text-center pt-10">
                 <h1 className="font-semibold text-2xl md:text-4xl ">Create Your Note Here</h1>
                 <Link to="/dashboard/personalNotes"><li className='hover:cursor-pointer text-gray-500 hover:text-red-500 rounded-md list-none'><a>Manage personal notes</a></li></Link>

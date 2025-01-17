@@ -33,7 +33,7 @@ const SessionDetails = () => {
 
     return (
         <div>
-            <div className="container mx-auto h-[500px] md:min-h-screen text-white">
+            <div className="container mx-auto h-[600px] md:min-h-screen text-white">
                 <SectionTitle heading="session details" subHeading="let's book your dream session" />
                 <div className="text-center md:border md:w-[500px] bg-[#0B1F24] md:mx-auto p-2 md:p-5 mx-5">
                     {

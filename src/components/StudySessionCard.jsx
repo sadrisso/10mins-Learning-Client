@@ -22,8 +22,8 @@ const StudySessionCard = ({ item }) => {
                     <h2 className="card-title">{sessionTitle}</h2>
                     <p>{sessionDescription}</p>
                     <div className="card-actions justify-end">
-                        <button className="btn btn-xs">Ongoing</button>
-                        <Link to={`dashboard/sessionDetails/${_id}`}><button className="btn btn-xs">Read More</button></Link>
+                        <button className="btn btn-xs btn-outline">Ongoing</button>
+                        <Link to={`dashboard/sessionDetails/${_id}`}><button className="btn btn-xs bg-[#198B46] text-white">Read More</button></Link>
                     </div>
                 </div>
             </div>

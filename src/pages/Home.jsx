@@ -36,7 +36,7 @@ const Home = () => {
             </div>
 
             <div>
-                <SectionTitle heading="all tutors" subHeading="Meet Out Tutors" />
+                <SectionTitle heading="all tutors" subHeading="Meet Our Tutors" />
                 <AllTutors />
             </div>
         </div>

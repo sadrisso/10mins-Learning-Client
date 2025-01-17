@@ -9,6 +9,10 @@ import AllStudySessions from "../dashboardCom/AllStudySessions";
 import Banner1 from "../components/Banner1";
 import PrivateRoute from "./PrivateRoute";
 import SessionDetails from "../dashboardCom/SessionDetails";
+import AllBookedSessions from "../dashboardCom/AllBookedSessions";
+import CreateNote from "../dashboardCom/CreateNote";
+import ManageNotes from "../dashboardCom/ManageNotes";
+import AllStudyMaterialByTutor from "../dashboardCom/AllStudyMaterialByTutor";
 
 export const router = createBrowserRouter([
     {
@@ -46,9 +50,24 @@ export const router = createBrowserRouter([
                 element: <PrivateRoute><AllStudySessions /></PrivateRoute>
             },
             {
+                path: "viewBookedSessions",
+                element: <PrivateRoute><AllBookedSessions /></PrivateRoute>
+            },
+            {
+                path: "createNote",
+                element: <PrivateRoute><CreateNote /></PrivateRoute>
+            },
+            {
+                path: "manageNote",
+                element: <PrivateRoute><ManageNotes /></PrivateRoute>
+            },
+            {
+                path: "allStudyMaterialByTutor",
+                element: <PrivateRoute><AllStudyMaterialByTutor /></PrivateRoute>
+            },
+            {
                 path: "sessionDetails/:id",
                 element: <SessionDetails />,
-                // loader: ({params}) => fetch(`http://localhost:5000/studySession/${params.id}`)
             }
         ]
     }

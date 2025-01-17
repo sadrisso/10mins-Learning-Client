@@ -37,13 +37,13 @@ const AdminStudySessionCard = ({ item }) => {
             {/* <button className="btn" onClick={() => document.getElementById('my_modal_1').showModal()}>open modal</button> */}
             <dialog id="my_modal_1" className="modal">
                 <div className="modal-box">
-                    <Qus />
                     <div className="modal-action">
                         <form method="dialog">
                             {/* if there is a button in form, it will close the modal */}
-                            <button className="text-red-500"><RxCrossCircled /></button>
+                            <button className="text-red-500"><RxCrossCircled className="text-2xl" /></button>
                         </form>
                     </div>
+                    <Qus />
                 </div>
             </dialog>
         </div>

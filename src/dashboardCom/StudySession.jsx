@@ -6,6 +6,7 @@ import useAuth from "../hooks/useAuth";
 // import "react-datepicker/dist/react-datepicker.css";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 
 const StudySession = () => {
@@ -15,6 +16,7 @@ const StudySession = () => {
 
     const {
         register,
+        reset,
         handleSubmit,
         formState: { errors },
     } = useForm()
@@ -25,6 +27,16 @@ const StudySession = () => {
 
         const res = await axiosSecure.post("studySessions", data)
         console.log(res.data)
+        if (res?.data?.insertedId) {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Study Session Posted Successfully",
+                showConfirmButton: false,
+                timer: 1500
+            });
+            reset()
+        }
     }
 
 

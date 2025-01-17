@@ -15,7 +15,7 @@ const Qus = () => {
                         placeholder="amount?"
                         onChange={(e) => handleChange(setPaidAmount(e.target.value))}
                         className="input input-bordered w-full max-w-xs mt-2" />
-                    <button className='btn mt-2'>Send</button>
+                    <button className='btn btn-sm mt-4 btn-neutral w-[70px]'>Send</button>
                 </div>
             </form>
         </div>

@@ -15,7 +15,7 @@ const Dashboard = () => {
                 </div>
                 <div className="flex-none">
                     <ul className="menu menu-horizontal px-1">
-                        <Link to="/"><li><a><FaHome className='text-[16px]'/></a></li></Link>
+                        <Link to="/"><li><a><FaHome className='text-[16px]' /></a></li></Link>
                         <Link to="/dashboard"><li><a>Home</a></li></Link>
                         <li>
                             <details>
@@ -23,7 +23,7 @@ const Dashboard = () => {
                                 <ul className="bg-base-100 rounded-t-none p-2">
                                     <Link to="/dashboard/studySession"><li><a>Create Study Session</a></li></Link>
                                     <Link to="/dashboard/viewStudySessions"><li><a>All Study Session</a></li></Link>
-                                    <li><a>Link 2</a></li>
+
                                 </ul>
                             </details>
                         </li>

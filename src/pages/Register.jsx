@@ -3,13 +3,18 @@ import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 import { toast } from 'react-toastify';
 import useAxiosSecure from '../hooks/useAxiosSecure';
+import { GoogleAuthProvider } from 'firebase/auth';
+import { FaGoogle } from 'react-icons/fa';
+import useAxiosPublic from '../hooks/useAxiosPublic';
+const provider = new GoogleAuthProvider();
 
 
 const Register = () => {
 
-    const { createUser, loading, update } = useAuth();
+    const { createUser, loading, update, googleSignIn } = useAuth();
     const navigate = useNavigate();
     const axiosSecure = useAxiosSecure();
+    const axiosPublic = useAxiosPublic();
 
     const {
         register,
@@ -36,10 +41,31 @@ const Register = () => {
             .then(res => {
                 toast.success("Successfully Registered")
                 navigate("/")
-                update({displayName: data?.name, photoURL: data?.photo})
+                update({ displayName: data?.name, photoURL: data?.photo })
             })
             .catch(err => {
                 console.log("ERR: ", err)
+            })
+    }
+
+    const handleGoogleSignIn = () => {
+        googleSignIn(provider)
+            .then(res => {
+                if (res?.user) {
+                    const userInfo = {
+                        email: res?.user?.email,
+                        name: res?.user?.displayName
+                    }
+
+                    axiosPublic.post("users", userInfo)
+                        .then(res => {
+                            console.log(res?.data)
+                            navigate("/")
+                        })
+                }
+            })
+            .catch(err => {
+                console.log(err?.message)
             })
     }
 
@@ -143,6 +169,9 @@ const Register = () => {
                                     }Register</button>
                             </div>
                         </form>
+                        <div className='w-[400px] mx-auto text-center'>
+                            <button onClick={handleGoogleSignIn} className='btn btn-neutral'>Google <FaGoogle /></button>
+                        </div>
                         <p className='text-center p-2'>Have an account? <Link to="/login"><span className="text-blue-700">Login</span></Link></p>
                     </div>
                 </div>

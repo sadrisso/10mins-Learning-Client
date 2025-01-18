@@ -16,7 +16,7 @@ const AllTutors = () => {
     return (
         <>
             {
-                loading ? <div><p className='text-2xl'>Please Wait</p></div> :
+                loading ? <div><p className='text-2xl text-center py-4'>Please Wait</p></div> :
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-5 container mx-auto mb-5 px-2'>
                         {tutors.map((tutor) =>
                             <div className="card bg-base-100 border">

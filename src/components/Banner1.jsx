@@ -13,6 +13,7 @@ const Banner1 = () => {
                     <Link to="/dashboard/createNote"><li className='hover:cursor-pointer text-gray-500 hover:text-red-500 rounded-md'><a>Create Note</a></li></Link>
                     <Link to="/dashboard/personalNotes"><li className='hover:cursor-pointer text-gray-500 hover:text-red-500 rounded-md'><a>Manage personal notes</a></li></Link>
                     <Link to="/dashboard/allStudyMaterialByTutor"><li className='hover:cursor-pointer text-gray-500 hover:text-red-500 rounded-md'><a>View all study materials  provided by the tutor</a></li></Link>
+                    <Link to="/dashboard/users"><li className='hover:cursor-pointer text-gray-500 hover:text-red-500 rounded-md'><a>All Users</a></li></Link>
                 </div>
             </div>
         </div>

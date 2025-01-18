@@ -14,6 +14,7 @@ import CreateNote from "../dashboardCom/CreateNote";
 import AllStudyMaterialByTutor from "../dashboardCom/AllStudyMaterialByTutor";
 import PersonalNote from "../dashboardCom/PersonalNote";
 import UpdateNote from "../dashboardCom/UpdateNote";
+import Users from "../dashboardCom/Users";
 
 export const router = createBrowserRouter([
     {
@@ -41,6 +42,10 @@ export const router = createBrowserRouter([
             {
                 path: "/dashboard",
                 element: <Banner1 />
+            },
+            {
+                path: "users",
+                element: <Users />
             },
             {
                 path: "studySession",

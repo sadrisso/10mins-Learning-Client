@@ -3,7 +3,6 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import SectionTitle from "../components/SectionTitle";
 import { useNavigate } from "react-router-dom";
 import { IoChevronBackCircleSharp } from "react-icons/io5";
-import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 
 
@@ -15,46 +14,75 @@ const Users = () => {
     const { data: users = [], refetch } = useQuery({
         queryKey: ["users"],
         queryFn: async () => {
-            const res = await axiosSecure.get("users")
+            const res = await axiosSecure.get("users", {
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            })
             return res?.data;
         }
     })
 
 
-    const handleMakeAdmin = async (id) => {
+    const handleMakeAdmin = (id) => {
         const info = {
             role: "Admin"
         }
 
-        const res = await axiosSecure.patch(`users/admin/${id}`, info)
-        if (res?.data?.modifiedCount > 0) {
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Role updated to admin",
-                showConfirmButton: false,
-                timer: 1500
-            });
-            refetch();
-        }
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Want to make admin?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+
+                const res = await axiosSecure.patch(`users/admin/${id}`, info)
+                if (res?.data?.modifiedCount > 0) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Role updated to admin",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    refetch();
+                }
+            }
+        });
     }
 
-    const handleRemoveAdmin = async (id) => {
+    const handleRemoveAdmin = (id) => {
         const info = {
             role: "Student"
         }
 
-        const res = await axiosSecure.patch(`users/admin/${id}`, info)
-        if (res?.data?.modifiedCount > 0) {
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Role updated to student",
-                showConfirmButton: false,
-                timer: 1500
-            });
-            refetch();
-        }
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Want to make role to student?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                const res = await axiosSecure.patch(`users/admin/${id}`, info)
+                if (res?.data?.modifiedCount > 0) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Role updated to student",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    refetch();
+                }
+            }
+        });
     }
 
     const handleBack = () => navigate(-1)
@@ -81,7 +109,7 @@ const Users = () => {
 
             <div className="container mx-auto">
                 <div className="overflow-x-auto">
-                    <table className="table">
+                    <table className="table text-center">
                         {/* head */}
                         <thead>
                             <tr>
@@ -90,7 +118,7 @@ const Users = () => {
                                 <th>Email</th>
                                 <th>Photo</th>
                                 <th>Role</th>
-                                <th className="text-center">Action</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -102,9 +130,15 @@ const Users = () => {
                                         <td>{user?.email}</td>
                                         <td><img src={user?.photo} className="w-[40px] h-[40px]" alt="" /></td>
                                         <td>{user?.role}</td>
-                                        <td className="text-center">
-                                            <button onClick={() => handleMakeAdmin(user?._id)} className="btn btn-sm mr-1 btn-success">Make Admin</button>
-                                            <button onClick={() => handleRemoveAdmin(user?._id)} className="btn btn-sm btn-error">Remove Admin</button>
+                                        <td>
+                                            {
+                                                user?.role === "Admin" ?
+                                                    <button onClick={() => handleRemoveAdmin(user?._id)} className="btn btn-sm btn-error">Remove Admin</button>
+                                                    :
+                                                    <button onClick={() => handleMakeAdmin(user?._id)} className="btn btn-sm mr-1 btn-success">Make Admin</button>
+                                            }
+
+
                                         </td>
                                     </tr>)
                             }

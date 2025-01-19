@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import useAxiosSecure from '../hooks/useAxiosSecure';
+import { useQuery } from '@tanstack/react-query';
 
 const AllTutors = () => {
 
     const [loading, setLoading] = useState(true)
-    const [tutors, setTutors] = useState([])
     const axiosSecure = useAxiosSecure()
-    axiosSecure.get("/tutor")
-        .then(res => {
-            setTutors(res.data)
+
+    const { data: tutors = [] } = useQuery({
+        queryKey: ["tutors"],
+        queryFn: async () => {
+            const res = await axiosSecure.get("tutors")
             setLoading(false)
-        })
+            return res?.data
+        }
+    })
 
 
     return (

@@ -1,14 +1,24 @@
-import { RxCrossCircled } from "react-icons/rx";
-import Qus from "../components/Qus";
-
+import { useNavigate } from "react-router-dom";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
 const AdminStudySessionCard = ({ item }) => {
 
-    const handleOpenModal = () => {
-        document.getElementById('my_modal_1').showModal()
-    }
+    const axiosSecure = useAxiosSecure()
+
+    const { data: allSessions = [], refetch } = useQuery({
+        queryKey: ['allSessions'],
+        queryFn: async () => {
+            const res = await axiosSecure.get("allStudySessions")
+            setIsLoading(false)
+            return res.data;
+        }
+    })
 
     const { sessionTitle,
+        _id,
         tutorName,
         tutorEmail,
         sessionDescription,
@@ -19,6 +29,105 @@ const AdminStudySessionCard = ({ item }) => {
         registrationFee,
         status } = item;
 
+
+    const handleAcceptSeassion = async (id) => {
+
+        const info = {
+            status: "ongoing"
+        }
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Want to accept this session?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+
+                const res = await axiosSecure.patch(`studySessions/${id}`, info)
+                if (res?.data?.modifiedCount > 0) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Status Ongoing",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    refetch();
+                }
+            }
+        });
+    }
+
+
+    const handleStopSession = async (id) => {
+
+        const info = {
+            status: "pending"
+        }
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Want to stop this session?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+
+                const res = await axiosSecure.patch(`studySessions/${id}`, info)
+                if (res?.data?.modifiedCount > 0) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Status pending",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    refetch();
+                }
+            }
+        });
+    }
+
+
+    const handleRejectSession = async (id) => {
+
+        const info = {
+            status: "closed"
+        }
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Want to close this session?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+
+                const res = await axiosSecure.patch(`studySessions/${id}`, info)
+                if (res?.data?.modifiedCount > 0) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Closed",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    refetch();
+                }
+            }
+        });
+    }
+
     return (
         <div>
             <div className="card bg-base-200 border h-[300px] md:w-[370px]">
@@ -27,29 +136,20 @@ const AdminStudySessionCard = ({ item }) => {
                     <p>{sessionDescription}</p>
                     <p>Status: {status}</p>
                     <div className="card-actions justify-end">
-                        <button className="btn btn-xs btn-success" onClick={handleOpenModal}>Accept</button>
-                        <button className="btn btn-xs btn-error">Reject</button>
+                        {
+                            status === "ongoing" ?
+                                <button className="btn btn-xs btn-warning" onClick={() => handleStopSession(_id)}>Stop</button> :
+                                <button className="btn btn-xs btn-success" onClick={() => handleAcceptSeassion(_id)}>Accept</button>
+                        }
+                        <button onClick={() => handleRejectSession(_id)} className="btn btn-xs btn-error">Reject</button>
                     </div>
                 </div>
             </div>
-
-            {/* Open the modal using document.getElementById('ID').showModal() method */}
-            {/* <button className="btn" onClick={() => document.getElementById('my_modal_1').showModal()}>open modal</button> */}
-            <dialog id="my_modal_1" className="modal">
-                <div className="modal-box">
-                    <div className="modal-action">
-                        <form method="dialog">
-                            {/* if there is a button in form, it will close the modal */}
-                            <button className="text-red-500"><RxCrossCircled className="text-2xl" /></button>
-                        </form>
-                    </div>
-                    <Qus />
-                </div>
-            </dialog>
         </div>
 
 
     );
 };
+
 
 export default AdminStudySessionCard;

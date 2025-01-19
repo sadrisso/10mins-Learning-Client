@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 
 const Navbar = () => {
 
-    const { logOut, user } = useAuth()
+    const { logOut, user, setLoading } = useAuth()
     const navigate = useNavigate()
 
     console.log(user)
@@ -29,6 +29,7 @@ const Navbar = () => {
                             icon: "success"
                         });
                         navigate("/login")
+                        setLoading(false)
                     })
             }
         });

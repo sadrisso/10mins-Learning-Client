@@ -1,21 +1,9 @@
-import { useNavigate } from "react-router-dom";
 import useAxiosSecure from "../hooks/useAxiosSecure";
-import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 
-const AdminStudySessionCard = ({ item }) => {
+const AdminStudySessionCard = ({ item, refetch }) => {
 
     const axiosSecure = useAxiosSecure()
-
-    const { data: allSessions = [], refetch } = useQuery({
-        queryKey: ['allSessions'],
-        queryFn: async () => {
-            const res = await axiosSecure.get("allStudySessions")
-            setIsLoading(false)
-            return res.data;
-        }
-    })
 
     const { sessionTitle,
         _id,
@@ -98,34 +86,30 @@ const AdminStudySessionCard = ({ item }) => {
 
     const handleRejectSession = async (id) => {
 
-        const info = {
-            status: "closed"
-        }
-
         Swal.fire({
-            title: "Are you sure?",
-            text: "Want to close this session?",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes"
-        }).then(async (result) => {
-            if (result.isConfirmed) {
+                title: "Are you sure?",
+                text: "Want to close this session?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes"
+            }).then(async (result) => {
+                if (result.isConfirmed) {
 
-                const res = await axiosSecure.patch(`studySessions/${id}`, info)
-                if (res?.data?.modifiedCount > 0) {
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "Closed",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                    refetch();
+                    const res = await axiosSecure.delete(`studySession/${id}`)
+                    if (res?.data?.deletedCount > 0) {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Closed",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        refetch();
+                    }
                 }
-            }
-        });
+            });
     }
 
     return (

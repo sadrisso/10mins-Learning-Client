@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { FaGithub, FaGoogle } from "react-icons/fa";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const googleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
@@ -11,9 +12,16 @@ const githubProvider = new GithubAuthProvider();
 
 const Login = () => {
 
-    const { signIn, loading, setLoading, googleSignIn, githubSignIn } = useAuth();
+    const { signIn, loading, setLoading, googleSignIn, githubSignIn, setUserData } = useAuth();
     const navigate = useNavigate();
     const [error, setError] = useState(null);
+    const axiosSecure = useAxiosSecure();
+
+
+    const getLoginUserData = async (email) => {
+        const response = await axiosSecure.get(`user/${email}`)
+        setUserData(response?.data)
+    }
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -23,7 +31,8 @@ const Login = () => {
         const password = form.password.value;
 
         signIn(email, password)
-            .then(res => {
+            .then(async (res) => {
+                await getLoginUserData(email);
                 toast.success("Successfully Logged In")
                 navigate("/")
                 console.log("Successfully logged in", res?.user)
@@ -38,7 +47,8 @@ const Login = () => {
 
     const handleGoogleLogin = () => {
         googleSignIn(googleProvider)
-            .then(res => {
+            .then( async (res) => {
+                await getLoginUserData(res?.data?.email);
                 console.log(res?.user)
                 navigate("/")
             })
@@ -49,8 +59,9 @@ const Login = () => {
 
 
     const handleGithubLogin = () => {
-        googleSignIn(githubProvider)
-            .then(res => {
+        githubSignIn(githubProvider)
+            .then(async (res) => {
+                await getLoginUserData(res?.user?.email)
                 console.log(res?.user)
                 navigate("/")
             })

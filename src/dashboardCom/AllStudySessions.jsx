@@ -12,7 +12,7 @@ const AllStudySessions = () => {
     const navigate = useNavigate()
     const [isLoading, setIsLoading] = useState(true)
 
-    const { data: allSessions = [] } = useQuery({
+    const { data: allSessions = [], refetch } = useQuery({
         queryKey: ['allSessions'],
         queryFn: async () => {
             const res = await axiosSecure.get("allStudySessions")
@@ -41,7 +41,7 @@ const AllStudySessions = () => {
 
                         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 md:container md:mx-auto py-10 px-4 md:px-2'>
                             {
-                                allSessions.map((item, i) => <AdminStudySessionCard key={i} item={item} />)
+                                allSessions.map((item, i) => <AdminStudySessionCard key={i} item={item} refetch={refetch} />)
                             }
                         </div>
                     </div>

@@ -85,7 +85,7 @@ export const router = createBrowserRouter([
                 element: <SessionDetails />,
             },
             {
-                path: "BookedSessionDetails/:id",
+                path: "bookedSessionDetails/:id",
                 element: <BookedSessionDetails />,
             }
         ]

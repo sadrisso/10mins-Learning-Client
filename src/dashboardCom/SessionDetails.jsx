@@ -18,12 +18,14 @@ const SessionDetails = () => {
     const [allBookedData, setAllBookedData] = useState()
     const [isLoading, setIsLoading] = useState(true)
     const { id } = useParams()
-    const { user } = useAuth()
+    const { user, userData } = useAuth()
+
+    console.log("user data", userData)
 
 
     useEffect(() => {
         axiosSecure.get(`studySession/${id}`)
-            .then(res => {
+            .then((res) => {
                 setData(res?.data)
                 setIsLoading(false)
             })
@@ -31,19 +33,28 @@ const SessionDetails = () => {
 
 
     useEffect(() => {
-        axiosSecure.get(`bookedSessions`)
-            .then(res => {
-                setAllBookedData(res?.data)
-            })
-    }, [])
+        if (data?._id && user?.email) {
+            getBookingData()
+        }
+    }, [data, user])
 
-    console.log(allBookedData)
 
 
     const handleBack = () => navigate(-1)
 
+    const getBookingData = async () => {
+        const res = await axiosSecure.get(`isSessionBooked/${user?.email}/${data?._id}`)
+        setBookedData(res?.data)
+    }
+
 
     const handleBooking = async () => {
+
+        if (data?.registrationFee !== '0') {
+            alert("payment gateway")
+            return;
+        }
+
         const bookingInfo = {
             studentEmail: user?.email,
             studySessionId: data?._id,
@@ -72,6 +83,7 @@ const SessionDetails = () => {
             if (result.isConfirmed) {
 
                 const res = await axiosSecure.post("bookedSessions", bookingInfo)
+                await getBookingData()
                 if (res?.data?.insertedId) {
                     Swal.fire({
                         position: "top-end",
@@ -112,9 +124,14 @@ const SessionDetails = () => {
                                 </div>
                                 <div className="mt-5">
                                     {
-                                        data?.booked === true ?
-                                        <button className="btn btn-disabled">Booked</button> :
-                                        <button onClick={handleBooking} className="btn btn-sm md:btn-md bg-[#43282D] text-white"> <FaBook /> Book Now</button>
+                                        (userData?.role === "Admin" || userData?.role === "Tutor") || bookedData?.status === "booked" ?
+                                            <button className="btn btn-disabled">Booked</button> :
+                                            <button onClick={handleBooking} className="btn btn-sm md:btn-md bg-[#43282D] text-white"> <FaBook /> Book Now</button>
+                                    }
+                                </div>
+                                <div>
+                                    {
+                                        bookedData?.status === "booked" && <p>Study Mererials</p>
                                     }
                                 </div>
                             </div>

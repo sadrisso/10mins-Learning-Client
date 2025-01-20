@@ -2,11 +2,16 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
+import { FaGithub, FaGoogle } from "react-icons/fa";
+
+const googleProvider = new GoogleAuthProvider();
+const githubProvider = new GithubAuthProvider();
 
 
 const Login = () => {
 
-    const { signIn, loading, setLoading } = useAuth();
+    const { signIn, loading, setLoading, googleSignIn, githubSignIn } = useAuth();
     const navigate = useNavigate();
     const [error, setError] = useState(null);
 
@@ -29,6 +34,32 @@ const Login = () => {
                 setLoading(false)
             })
     }
+
+
+    const handleGoogleLogin = () => {
+        googleSignIn(googleProvider)
+            .then(res => {
+                console.log(res?.user)
+                navigate("/")
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
+
+    const handleGithubLogin = () => {
+        googleSignIn(githubProvider)
+            .then(res => {
+                console.log(res?.user)
+                navigate("/")
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
+
     return (
         <div>
             <div className="hero bg-[#112047] py-20 md:py-40 text-gray-400">
@@ -71,6 +102,10 @@ const Login = () => {
                                     {
                                         loading && <span className="loading loading-spinner loading-xs"></span>
                                     }Login</button>
+                            </div>
+                            <div className="p-2 text-center">
+                                <button onClick={handleGoogleLogin} className="btn"> <FaGoogle /> Google</button>
+                                <button onClick={handleGithubLogin} className="btn"> <FaGithub /> Github</button>
                             </div>
                         </form>
                         {

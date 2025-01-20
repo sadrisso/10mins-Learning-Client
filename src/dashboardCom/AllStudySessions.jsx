@@ -27,7 +27,12 @@ const AllStudySessions = () => {
         <div>
             <p className="p-3" onClick={handleBack}><IoChevronBackCircleSharp className="text-3xl text-white m-2" /></p>
             {
-                isLoading ? <div><p className='text-white text-center text-5xl p-10'>Please Wait</p></div> :
+                isLoading ?
+                    <div className='text-white text-center py-10'>
+                        <span className="loading loading-dots loading-lg"></span>
+                        <p className="text-4xl">Please Wait</p>
+                    </div>
+                    :
                     <div>
                         <div className='text-white'>
                             <SectionTitle heading="all study sessions" subHeading="checkout all" />

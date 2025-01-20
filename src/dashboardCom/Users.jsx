@@ -10,6 +10,7 @@ import { useState } from "react";
 const Users = () => {
 
     const axiosSecure = useAxiosSecure()
+    const [loading, setLoading] = useState(true)
     const navigate = useNavigate()
     const [search, setSearch] = useState("")
 
@@ -17,6 +18,7 @@ const Users = () => {
         queryKey: ["users", search],
         queryFn: async () => {
             const res = await axiosSecure.get(`users?search=${search}`)
+            setLoading(false)
             return res?.data;
         }
     })
@@ -119,28 +121,36 @@ const Users = () => {
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            {
-                                users.map((user, i) =>
-                                    <tr key={i}>
-                                        <th>{i + 1}</th>
-                                        <td>{user?.name}</td>
-                                        <td>{user?.email}</td>
-                                        <td><img src={user?.photo} className="w-[40px] h-[40px]" alt="" /></td>
-                                        <td>{user?.role}</td>
-                                        <td>
-                                            {
-                                                user?.role === "Admin" ?
-                                                    <button onClick={() => handleRemoveAdmin(user?._id)} className="btn btn-sm btn-error">Remove Admin</button>
-                                                    :
-                                                    <button onClick={() => handleMakeAdmin(user?._id)} className="btn btn-sm mr-1 btn-success">Make Admin</button>
-                                            }
+                        {
+                            loading ?
+                                <div className="py-5 text-center">
+                                    <span className="loading loading-dots loading-lg"></span>
+                                    <p className="text-black text-2xl md:text-4xl">Please Wait</p>
+                                </div>
+                                :
+                                <tbody>
+                                    {
+                                        users.map((user, i) =>
+                                            <tr key={i}>
+                                                <th>{i + 1}</th>
+                                                <td>{user?.name}</td>
+                                                <td>{user?.email}</td>
+                                                <td><img src={user?.photo} className="w-[40px] h-[40px]" alt="" /></td>
+                                                <td>{user?.role}</td>
+                                                <td>
+                                                    {
+                                                        user?.role === "Admin" ?
+                                                            <button onClick={() => handleRemoveAdmin(user?._id)} className="btn btn-sm btn-error">Remove Admin</button>
+                                                            :
+                                                            <button onClick={() => handleMakeAdmin(user?._id)} className="btn btn-sm mr-1 btn-success">Make Admin</button>
+                                                    }
 
 
-                                        </td>
-                                    </tr>)
-                            }
-                        </tbody>
+                                                </td>
+                                            </tr>)
+                                    }
+                                </tbody>
+                        }
                     </table>
                 </div>
             </div>

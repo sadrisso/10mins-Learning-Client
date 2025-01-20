@@ -6,17 +6,20 @@ import { FaPen, FaTrash } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { IoChevronBackCircleSharp } from 'react-icons/io5';
+import { useState } from 'react';
 
 
 const PersonalNote = () => {
 
+    const [loading, setLoading] = useState(true)
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
 
     const { data: notes = [], refetch } = useQuery({
         queryKey: ["notes"],
         queryFn: async () => {
-            const res = await axiosSecure.get("/myNotes")
+            const res = await axiosSecure.get("myNotes")
+            setLoading(false)
             return res?.data;
         }
     })
@@ -56,24 +59,32 @@ const PersonalNote = () => {
                 <Link to="/dashboard/createNote"><li className='hover:cursor-pointer text-center list-none text-gray-500 hover:text-red-500 rounded-md'><a>Create Note</a></li></Link>
             </div>
 
-            <div className='text-white container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 p-2 md:p-0 md:h-[800px]'>
-                {
-                    notes.map((note, i) =>
-                        <div key={i}>
-                            <div className="card bg-neutral text-neutral-content md:h-[300px]">
-                                <div className="card-body items-center text-center">
-                                    <h2 className="card-title">{note?.title}</h2>
-                                    <p>{note?.description}</p>
-                                    <p>{note?.email}</p>
-                                    <div className="card-actions justify-end">
-                                        <Link to={`/dashboard/updateNote/${note._id}`}><button className="btn btn-ghost"><FaPen /></button></Link>
-                                        <button onClick={() => handleRemove(note?._id)} className="btn btn-ghost"><FaTrash /></button>
+            {
+                loading ?
+                    <div className='text-center py-10'>
+                        <span className="loading loading-dots loading-lg"></span>
+                        <p className="text-white text-4xl">Please Wait</p>
+                    </div>
+                    :
+                    <div className='text-white container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 p-2 md:p-0 md:h-[800px]'>
+                        {
+                            notes.map((note, i) =>
+                                <div key={i}>
+                                    <div className="card bg-neutral text-neutral-content md:h-[300px]">
+                                        <div className="card-body items-center text-center">
+                                            <h2 className="card-title">{note?.title}</h2>
+                                            <p>{note?.description}</p>
+                                            <p>{note?.email}</p>
+                                            <div className="card-actions justify-end">
+                                                <Link to={`/dashboard/updateNote/${note._id}`}><button className="btn btn-ghost"><FaPen /></button></Link>
+                                                <button onClick={() => handleRemove(note?._id)} className="btn btn-ghost"><FaTrash /></button>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>)
-                }
-            </div>
+                                </div>)
+                        }
+                    </div>
+            }
         </div>
     );
 };

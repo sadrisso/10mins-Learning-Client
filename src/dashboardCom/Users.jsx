@@ -4,17 +4,19 @@ import SectionTitle from "../components/SectionTitle";
 import { useNavigate } from "react-router-dom";
 import { IoChevronBackCircleSharp } from "react-icons/io5";
 import Swal from "sweetalert2";
+import { useState } from "react";
 
 
 const Users = () => {
 
     const axiosSecure = useAxiosSecure()
     const navigate = useNavigate()
+    const [search, setSearch] = useState("")
 
     const { data: users = [], refetch } = useQuery({
-        queryKey: ["users"],
+        queryKey: ["users", search],
         queryFn: async () => {
-            const res = await axiosSecure.get("users")
+            const res = await axiosSecure.get(`users?search=${search}`)
             return res?.data;
         }
     })
@@ -88,7 +90,7 @@ const Users = () => {
             <div className="flex justify-evenly items-center">
                 <p className="p-3" onClick={handleBack}><IoChevronBackCircleSharp className="text-3xl m-1" /></p>
                 <label className="input input-bordered flex items-center gap-2">
-                    <input type="text" className="grow" placeholder="Search Name or Email" />
+                    <input type="text" className="grow" placeholder="Search Name or Email" onKeyUp={(e) => setSearch(e.target.value)} />
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 16 16"

@@ -15,6 +15,10 @@ import AllStudyMaterialByTutor from "../dashboardCom/AllStudyMaterialByTutor";
 import PersonalNote from "../dashboardCom/PersonalNote";
 import UpdateNote from "../dashboardCom/UpdateNote";
 import Users from "../dashboardCom/Users";
+import BookedSessionDetails from '../dashboardCom/BookedSessionDetails';
+
+
+
 
 export const router = createBrowserRouter([
     {
@@ -79,6 +83,10 @@ export const router = createBrowserRouter([
             {
                 path: "sessionDetails/:id",
                 element: <SessionDetails />,
+            },
+            {
+                path: "BookedSessionDetails/:id",
+                element: <BookedSessionDetails />,
             }
         ]
     }

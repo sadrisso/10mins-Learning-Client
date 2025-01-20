@@ -14,7 +14,8 @@ const SessionDetails = () => {
     const axiosSecure = useAxiosSecure()
     const navigate = useNavigate()
     const [data, setData] = useState()
-    // const [bookData, setBookData] = useState()
+    const [bookedData, setBookedData] = useState()
+    const [allBookedData, setAllBookedData] = useState()
     const [isLoading, setIsLoading] = useState(true)
     const { id } = useParams()
     const { user } = useAuth()
@@ -29,6 +30,16 @@ const SessionDetails = () => {
     }, [])
 
 
+    useEffect(() => {
+        axiosSecure.get(`bookedSessions`)
+            .then(res => {
+                setAllBookedData(res?.data)
+            })
+    }, [])
+
+    console.log(allBookedData)
+
+
     const handleBack = () => navigate(-1)
 
 
@@ -36,8 +47,17 @@ const SessionDetails = () => {
         const bookingInfo = {
             studentEmail: user?.email,
             studySessionId: data?._id,
-            booked: true,
-            ...data
+            status: "booked",
+            sessionTitle: data?.sessionTitle,
+            tutorName: data?.tutorName,
+            tutorEmail: data?.tutorEmail,
+            sessionDescription: data?.sessionDescription,
+            regStartDate: data?.regStartDate,
+            regEndDate: data?.regEndDate,
+            classStartDate: data?.classStartDate,
+            classEndDate: data?.classEndDate,
+            sessionDuration: data?.sessionDuration,
+            registrationFee: data?.registrationFee
         }
 
         Swal.fire({
@@ -91,7 +111,11 @@ const SessionDetails = () => {
                                     <p>Review: </p>
                                 </div>
                                 <div className="mt-5">
-                                    <button onClick={handleBooking} className="btn btn-sm md:btn-md bg-[#43282D] text-white"> <FaBook /> Book Now</button>
+                                    {
+                                        data?.booked === true ?
+                                        <button className="btn btn-disabled">Booked</button> :
+                                        <button onClick={handleBooking} className="btn btn-sm md:btn-md bg-[#43282D] text-white"> <FaBook /> Book Now</button>
+                                    }
                                 </div>
                             </div>
                     }

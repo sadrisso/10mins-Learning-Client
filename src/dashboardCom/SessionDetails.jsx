@@ -6,6 +6,8 @@ import { FaBook } from "react-icons/fa";
 import { IoChevronBackCircleSharp } from "react-icons/io5";
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
+import Payment from "./Payment";
+import StudyMaterials from "./StudyMaterial";
 
 
 
@@ -15,7 +17,7 @@ const SessionDetails = () => {
     const navigate = useNavigate()
     const [data, setData] = useState()
     const [bookedData, setBookedData] = useState()
-    const [allBookedData, setAllBookedData] = useState()
+    const [payment, setPayment] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
     const { id } = useParams()
     const { user, userData } = useAuth()
@@ -51,8 +53,7 @@ const SessionDetails = () => {
     const handleBooking = async () => {
 
         if (data?.registrationFee !== '0') {
-            alert("payment gateway")
-            return;
+            setPayment(true)
         }
 
         const bookingInfo = {
@@ -97,6 +98,11 @@ const SessionDetails = () => {
         });
     }
 
+    const handleOpenMaterials = () => {
+        console.log("Study materials coming soon...")
+        navigate(`/dashboard/studyMaterial/${data?._id}`)
+    }
+
     return (
         <div>
             <p className="p-3" onClick={handleBack}><IoChevronBackCircleSharp className="text-3xl text-white m-2" /></p>
@@ -125,13 +131,11 @@ const SessionDetails = () => {
                                 <div className="mt-5">
                                     {
                                         (userData?.role === "Admin" || userData?.role === "Tutor") || bookedData?.status === "booked" ?
-                                            <button className="btn btn-disabled">Booked</button> :
+                                            <div className="border p-2 bg-[#2A0042]">
+                                                <p>You Booked This Session</p>
+                                                <button onClick={handleOpenMaterials} className="btn btn-warning">See Materials</button>
+                                            </div> :
                                             <button onClick={handleBooking} className="btn btn-sm md:btn-md bg-[#43282D] text-white"> <FaBook /> Book Now</button>
-                                    }
-                                </div>
-                                <div>
-                                    {
-                                        bookedData?.status === "booked" && <p>Study Mererials</p>
                                     }
                                 </div>
                             </div>

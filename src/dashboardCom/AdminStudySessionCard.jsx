@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 
@@ -119,13 +120,15 @@ const AdminStudySessionCard = ({ item, refetch }) => {
                     <h2 className="card-title">{sessionTitle}</h2>
                     <p>{sessionDescription}</p>
                     <p>Status: {status}</p>
-                    <div className="card-actions justify-end">
+                    <p>{registrationFee === "0" ? "Free" : "$" + registrationFee }</p>
+                    <div className="card-actions justify-center">
                         {
                             status === "ongoing" ?
                                 <button className="btn btn-xs btn-warning" onClick={() => handleStopSession(_id)}>Stop</button> :
                                 <button className="btn btn-xs btn-success" onClick={() => handleAcceptSeassion(_id)}>Accept</button>
                         }
                         <button onClick={() => handleRejectSession(_id)} className="btn btn-xs btn-error">Reject</button>
+                        <Link to={`/dashboard/uploadMaterial/${_id}`}><button className="btn btn-xs">Upload Material For this Session</button></Link>
                     </div>
                 </div>
             </div>

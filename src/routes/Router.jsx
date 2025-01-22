@@ -16,6 +16,8 @@ import PersonalNote from "../dashboardCom/PersonalNote";
 import UpdateNote from "../dashboardCom/UpdateNote";
 import Users from "../dashboardCom/Users";
 import BookedSessionDetails from '../dashboardCom/BookedSessionDetails';
+import StudyMaterial from "../dashboardCom/StudyMaterial";
+import UploadMaterial from "../dashboardCom/UploadMaterial";
 
 
 
@@ -79,6 +81,14 @@ export const router = createBrowserRouter([
             {
                 path: "allStudyMaterialByTutor",
                 element: <PrivateRoute><AllStudyMaterialByTutor /></PrivateRoute>
+            },
+            {
+                path: "uploadMaterial/:id",
+                element: <UploadMaterial />
+            },
+            {
+                path: "studyMaterial/:id",
+                element: <StudyMaterial />
             },
             {
                 path: "sessionDetails/:id",

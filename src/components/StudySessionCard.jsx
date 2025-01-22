@@ -37,6 +37,7 @@ const StudySessionCard = ({ item }) => {
                         <p>Registration Start Date: {regStartDate}</p>
                         <p>Registration End Date: {regEndDate}</p>
                     </div>
+                    <p>{registrationFee === "0" ? "Free" : "$" + registrationFee}</p>
                     <div className="card-actions justify-end">
                         {
                             isRegistrationExpired ? <button className="btn btn-xs btn-outline">Closed</button>

@@ -18,6 +18,7 @@ import Users from "../dashboardCom/Users";
 import BookedSessionDetails from '../dashboardCom/BookedSessionDetails';
 import StudyMaterial from "../dashboardCom/StudyMaterial";
 import UploadMaterial from "../dashboardCom/UploadMaterial";
+import EditStudyMaterial from "../dashboardCom/EditStudyMaterial";
 
 
 
@@ -80,7 +81,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "allStudyMaterialByTutor",
-                element: <PrivateRoute><AllStudyMaterialByTutor /></PrivateRoute>
+                element: <AllStudyMaterialByTutor />
             },
             {
                 path: "uploadMaterial/:id",
@@ -88,7 +89,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: "studyMaterial/:id",
-                element: <StudyMaterial />
+                element: <StudyMaterial />,
+            },
+            {
+                path: "editStudyMaterial/:id",
+                element: <EditStudyMaterial />
             },
             {
                 path: "sessionDetails/:id",

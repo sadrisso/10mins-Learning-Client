@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useEffect, useState } from "react";
 import SectionTitle from "../components/SectionTitle";
@@ -6,8 +6,6 @@ import { FaBook } from "react-icons/fa";
 import { IoChevronBackCircleSharp } from "react-icons/io5";
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
-import Payment from "./Payment";
-import StudyMaterials from "./StudyMaterial";
 
 
 
@@ -130,10 +128,10 @@ const SessionDetails = () => {
                                 </div>
                                 <div className="mt-5">
                                     {
-                                        (userData?.role === "Admin" || userData?.role === "Tutor") || bookedData?.status === "booked" ?
+                                        (userData?.role === "Admin" || userData?.role === "Tutor") ? <p></p> : bookedData?.status === "booked" ?
                                             <div className="border p-2 bg-[#2A0042]">
-                                                <p>You Booked This Session</p>
-                                                <button onClick={handleOpenMaterials} className="btn btn-warning">See Materials</button>
+                                                <p>Session Booked</p>
+                                                <Link to={`/dashboard/studyMaterial/${id}`}><button onClick={handleOpenMaterials} className="btn btn-warning">See Materials</button></Link>
                                             </div> :
                                             <button onClick={handleBooking} className="btn btn-sm md:btn-md bg-[#43282D] text-white"> <FaBook /> Book Now</button>
                                     }

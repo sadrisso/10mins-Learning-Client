@@ -53,7 +53,13 @@ const Navbar = () => {
                         user ?
                             <>
                                 <button onClick={handleLogOut} className="bg-[#12214A] btn btn-sm md:btn-md text-white">LogOut</button>
-                                <img src={user?.photoURL} alt="" className="w-[40px] h-[40px] rounded-full" />
+
+                                <div className="dropdown dropdown-hover">
+                                    <img src={user?.photoURL} alt="" className="w-[40px] h-[40px] rounded-full" />
+                                    <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+                                        <li><a>{user?.email}</a></li>
+                                    </ul>
+                                </div>
                             </>
                             : <Link to="/login"><button className="btn btn-sm md:btn-md bg-[#1CAB55] text-white">LogIn</button></Link>
                     }

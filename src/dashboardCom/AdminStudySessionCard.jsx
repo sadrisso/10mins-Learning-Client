@@ -88,29 +88,29 @@ const AdminStudySessionCard = ({ item, refetch }) => {
     const handleRejectSession = async (id) => {
 
         Swal.fire({
-                title: "Are you sure?",
-                text: "Want to close this session?",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes"
-            }).then(async (result) => {
-                if (result.isConfirmed) {
+            title: "Are you sure?",
+            text: "Want to close this session?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
 
-                    const res = await axiosSecure.delete(`studySession/${id}`)
-                    if (res?.data?.deletedCount > 0) {
-                        Swal.fire({
-                            position: "top-end",
-                            icon: "success",
-                            title: "Closed",
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                        refetch();
-                    }
+                const res = await axiosSecure.delete(`studySession/${id}`)
+                if (res?.data?.deletedCount > 0) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Closed",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    refetch();
                 }
-            });
+            }
+        });
     }
 
     return (
@@ -120,15 +120,19 @@ const AdminStudySessionCard = ({ item, refetch }) => {
                     <h2 className="card-title">{sessionTitle}</h2>
                     <p>{sessionDescription}</p>
                     <p>Status: {status}</p>
-                    <p>{registrationFee === "0" ? "Free" : "$" + registrationFee }</p>
+                    <p>{registrationFee === "0" ? "Free" : "$" + registrationFee}</p>
                     <div className="card-actions justify-center">
                         {
                             status === "ongoing" ?
-                                <button className="btn btn-xs btn-warning" onClick={() => handleStopSession(_id)}>Stop</button> :
+                                <button className="btn btn-xs btn-warning" onClick={() => handleStopSession(_id)}>Stop</button>
+                                :
                                 <button className="btn btn-xs btn-success" onClick={() => handleAcceptSeassion(_id)}>Accept</button>
                         }
                         <button onClick={() => handleRejectSession(_id)} className="btn btn-xs btn-error">Reject</button>
-                        <Link to={`/dashboard/uploadMaterial/${_id}`}><button className="btn btn-xs">Upload Material For this Session</button></Link>
+                        {
+                            status === "ongoing" &&
+                            <Link to={`/dashboard/uploadMaterial/${_id}`}><button className="btn btn-xs">Upload Material For this Session</button></Link>
+                        }
                     </div>
                 </div>
             </div>

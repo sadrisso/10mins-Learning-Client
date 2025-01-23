@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import SectionTitle from "../components/SectionTitle";
 import { IoChevronBackCircleSharp } from "react-icons/io5";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 
 const BookedSessionDetails = () => {
@@ -24,6 +25,35 @@ const BookedSessionDetails = () => {
     })
 
     const handleBack = () => navigate(-1)
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        const form = e.target;
+        const review = form.review.value;
+
+        const studentReview = { review, bookedSessionId: id }
+
+        console.log(studentReview)
+
+        axiosSecure.post("reviews", studentReview)
+            .then(res => {
+                console.log(res?.data)
+                if (res?.data?.insertedId) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Your review has been saved",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    form.reset();
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
 
     return (
         <div className="min-h-screen">
@@ -55,8 +85,13 @@ const BookedSessionDetails = () => {
                             <p>Registration Fee: ${data?.registrationFee}</p>
                             <div className="mt-3">
                                 <p className="text-xl">Add Review</p>
-                                <textarea className="md:w-[420px] mt-2 text-black resize-none textarea textarea-bordered" placeholder="Review here"></textarea>
-                                <button className="btn btn-wide">Send</button>
+                                <form onSubmit={handleSubmit}>
+                                    <textarea
+                                        className="md:w-[420px] mt-2 text-black resize-none textarea textarea-bordered"
+                                        name="review"
+                                        placeholder="Review here"></textarea>
+                                    <button className="btn btn-wide">Send</button>
+                                </form>
                             </div>
                         </div>
                     </div>

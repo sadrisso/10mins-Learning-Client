@@ -22,16 +22,22 @@ const StudyMaterials = () => {
 
     console.log("study material", studyMaterial)
 
+
     return (
         <div className='min-h-screen text-white'>
             <SectionTitle heading="Study Material" subHeading="study material by tutor" />
-            <div>
-                {studyMaterial.map((item, i) =>
-                    <div key={i} className='border p-2 m-2'>
-                        <h1>{item?.title}</h1>
-                        <p>Drive Link: {item.link}</p>
-                    </div>)}
-            </div>
+            {studyMaterial.length === 0 ? (
+                <p>No material added for this session.</p>
+            ) : (
+                <div>
+                    {studyMaterial.map((item, i) => (
+                        <div key={i} className='border p-2 m-2'>
+                            <h1>{item?.title}</h1>
+                            <p>Drive Link: {item.link}</p>
+                        </div>
+                    ))}
+                </div>
+            )}
         </div>
     );
 };

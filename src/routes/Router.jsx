@@ -19,6 +19,7 @@ import BookedSessionDetails from '../dashboardCom/BookedSessionDetails';
 import StudyMaterial from "../dashboardCom/StudyMaterial";
 import UploadMaterial from "../dashboardCom/UploadMaterial";
 import EditStudyMaterial from "../dashboardCom/EditStudyMaterial";
+import StudySessions from "../dashboardCom/StudySessions";
 
 
 
@@ -77,11 +78,15 @@ export const router = createBrowserRouter([
             {
                 path: "updateNote/:id",
                 element: <UpdateNote />,
-                loader: ({ params }) => fetch(`http://localhost:5000/myNotes/${params.id}`)
+                loader: ({ params }) => fetch(`https://10min-learning-server.vercel.app/myNotes/${params.id}`)
             },
             {
                 path: "allStudyMaterialByTutor",
                 element: <AllStudyMaterialByTutor />
+            },
+            {
+                path: "sessionForUploadMaterial",
+                element: <StudySessions />
             },
             {
                 path: "uploadMaterial/:id",

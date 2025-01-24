@@ -17,15 +17,8 @@ const Dashboard = () => {
                     <ul className="menu menu-horizontal px-1">
                         <Link to="/"><li><a><FaHome className='text-[16px]' /></a></li></Link>
                         <Link to="/dashboard"><li><a>Home</a></li></Link>
-                        <li>
-                            <details>
-                                <summary>{user?.displayName}</summary>
-                                <ul className="bg-base-100 rounded-t-none p-2">
-                                    <Link to="/dashboard/studySession"><li><a>Create Study Session</a></li></Link>
-                                    <Link to="/dashboard/viewStudySessions"><li><a>All Study Session</a></li></Link>
-
-                                </ul>
-                            </details>
+                        <li className='flex'>
+                            <p>{user?.displayName}</p>
                         </li>
                     </ul>
                 </div>

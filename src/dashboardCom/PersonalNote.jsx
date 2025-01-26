@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { IoChevronBackCircleSharp } from 'react-icons/io5';
 import { useState } from 'react';
+import useAuth from '../hooks/useAuth';
 
 
 const PersonalNote = () => {
@@ -14,11 +15,12 @@ const PersonalNote = () => {
     const [loading, setLoading] = useState(true)
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
+    const { user } = useAuth();
 
     const { data: notes = [], refetch } = useQuery({
         queryKey: ["notes"],
         queryFn: async () => {
-            const res = await axiosSecure.get("myNotes")
+            const res = await axiosSecure.get(`myNote/${user?.email}`)
             setLoading(false)
             return res?.data;
         }
@@ -66,26 +68,39 @@ const PersonalNote = () => {
                         <p className="text-white text-4xl">Please Wait</p>
                     </div>
                     :
-                    <div className='text-white container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 p-2 md:p-0 md:h-[800px]'>
-                        {
-                            notes.map((note, i) =>
-                                <div key={i}>
-                                    <div className="card bg-neutral text-neutral-content md:h-[300px]">
-                                        <div className="card-body items-center text-center">
-                                            <h2 className="card-title">{note?.title}</h2>
-                                            <p>{note?.description}</p>
-                                            <p>{note?.email}</p>
-                                            <div className="card-actions justify-end">
-                                                <Link to={`/dashboard/updateNote/${note._id}`}><button className="btn btn-ghost"><FaPen /></button></Link>
-                                                <button onClick={() => handleRemove(note?._id)} className="btn btn-ghost"><FaTrash /></button>
+                    (
+                        <div className="text-white container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 p-2 md:p-0 md:h-[800px]">
+                            {notes.length > 0 ? (
+                                notes.map((note, i) => (
+                                    <div key={i}>
+                                        <div className="card bg-neutral text-neutral-content md:h-[300px]">
+                                            <div className="card-body items-center text-center">
+                                                <h2 className="card-title">{note?.title}</h2>
+                                                <p>{note?.description}</p>
+                                                <p>{note?.email}</p>
+                                                <div className="card-actions justify-end">
+                                                    <Link to={`/dashboard/updateNote/${note._id}`}>
+                                                        <button className="btn btn-ghost"><FaPen /></button>
+                                                    </Link>
+                                                    <button onClick={() => handleRemove(note?._id)} className="btn btn-ghost">
+                                                        <FaTrash />
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>)
-                        }
-                    </div>
+                                ))
+                            ) : (
+                                <div className="text-center col-span-full">
+                                    <p>No notes available. Please add some notes to get started.</p>
+                                </div>
+                            )}
+                        </div>
+
+                    )
             }
-        </div>
+
+        </div >
     );
 };
 

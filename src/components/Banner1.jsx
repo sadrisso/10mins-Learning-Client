@@ -10,7 +10,6 @@ const Banner1 = () => {
     const [isTutor] = userTutor()
     const [isStudent] = useStudent()
 
-    console.log("Is student", isStudent)
 
     return (
         <div>
@@ -24,7 +23,7 @@ const Banner1 = () => {
                     <div>
                         {/* Admin Section */}
                         {isAdmin && (
-                            <div className='flex gap-4'>
+                            <div className='flex flex-cols md:flex-row gap-4'>
                                 <Link to="/dashboard/users">
                                     <li className='hover:cursor-pointer text-gray-500 hover:text-red-500'>
                                         All Users
@@ -43,7 +42,7 @@ const Banner1 = () => {
 
                         {/* Tutor Section */}
                         {isTutor && !isAdmin && (
-                            <div className='flex gap-4'>
+                            <div className='flex flex-cols md:flex-row gap-4'>
                                 <Link to="/dashboard/studySession" className='text-gray-500 hover:text-red-500'>
                                     <li>Create Study Session</li>
                                 </Link>
@@ -63,7 +62,7 @@ const Banner1 = () => {
 
                         {/* Student Section */}
                         {isStudent && !isAdmin && !isTutor && (
-                            <div className='flex gap-4'>
+                            <div className='flex flex-cols md:flex-row gap-4'>
                                 <Link to="/dashboard/viewBookedSessions">
                                     <li className='hover:cursor-pointer text-gray-500 hover:text-red-500'>
                                         View Booked Session

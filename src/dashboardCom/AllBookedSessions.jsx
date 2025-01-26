@@ -3,6 +3,7 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import SectionTitle from "../components/SectionTitle";
 import { Link, useNavigate } from "react-router-dom";
 import { IoChevronBackCircleSharp } from "react-icons/io5";
+import useAuth from "../hooks/useAuth";
 
 
 const AllBookedSessions = () => {
@@ -11,9 +12,10 @@ const AllBookedSessions = () => {
     const [loading, setLoading] = useState(true)
     const axiosSecure = useAxiosSecure()
     const [allBookedData, setAllBookedData] = useState([])
+    const { user } = useAuth()
 
     useEffect(() => {
-        axiosSecure.get(`bookedSessions`)
+        axiosSecure.get(`bookedSessions/${user?.email}`)
             .then(res => {
                 setAllBookedData(res?.data)
                 setLoading(false)
@@ -36,15 +38,26 @@ const AllBookedSessions = () => {
                     </div>
                     :
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-2 mx-auto container">
-                        {
-                            allBookedData.map((bookedData) =>
-                                <div className="text-center md:border md:w-[500px] bg-[#0B1F24] md:mx-auto p-2 md:p-5 mx-5 py-8">
+                        {allBookedData && allBookedData.length > 0 ? (
+                            allBookedData.map((bookedData) => (
+                                <div
+                                    key={bookedData?._id}
+                                    className="text-center md:border md:w-[500px] bg-[#0B1F24] md:mx-auto p-2 md:p-5 mx-5 py-8"
+                                >
                                     <h1 className="text-2xl">{bookedData?.sessionTitle}</h1>
                                     <p className="text-gray-400">Tutor: {bookedData?.tutorName}</p>
-                                    <Link to={`/dashboard/bookedSessionDetails/${bookedData?._id}`}><button className="btn btn-wide">View Details</button></Link>
-                                </div>)
-                        }
+                                    <Link to={`/dashboard/bookedSessionDetails/${bookedData?._id}`}>
+                                        <button className="btn btn-wide">View Details</button>
+                                    </Link>
+                                </div>
+                            ))
+                        ) : (
+                            <div className="text-center col-span-full py-10">
+                                <p className="text-2xl text-white">No sessions booked yet.</p>
+                            </div>
+                        )}
                     </div>
+
             }
         </div>
     );

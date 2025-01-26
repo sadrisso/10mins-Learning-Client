@@ -4,6 +4,7 @@ import useAuth from "../hooks/useAuth";
 import { useNavigate, useParams } from "react-router-dom";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 
 const UploadMaterial = () => {
@@ -12,6 +13,10 @@ const UploadMaterial = () => {
     const { user } = useAuth()
     const { id } = useParams()
     const axiosSecure = useAxiosSecure()
+    const axiosPublic = useAxiosPublic()
+
+    const image_hosting_key = import.meta.env.VITE_img_hosting_key
+    const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
     const {
         register,
@@ -23,29 +28,47 @@ const UploadMaterial = () => {
     const onSubmit = (data) => {
         console.log("form data", data)
 
-        Swal.fire({
-            title: "Are you sure?",
-            text: "Want to upload material for this session?",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes"
-        }).then(async (result) => {
-            if (result.isConfirmed) {
+        const imageFile = { image: data.image[0] }
+        axiosPublic.post(image_hosting_api, imageFile, {
+            headers: { 'content-type': 'multipart/form-data' }
+        })
+            .then((res) => {
+                if (res?.data?.success) {
+                    const uploadInfo = {
+                        title: data?.title,
+                        link: data?.link,
+                        tutorEmail: data?.tutorEmail,
+                        uploadMaterialId: data?.uploadMaterialId,
+                        image: res?.data?.data?.display_url
+                    }
 
-                const res = await axiosSecure.post("/uploadMaterial", data)
-                console.log(res?.data)
-                if (res?.data?.insertedId) {
                     Swal.fire({
-                        title: "Uploaded!",
-                        text: "Your file has been uploaded.",
-                        icon: "success"
+                        title: "Are you sure?",
+                        text: "Want to upload material for this session?",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Yes"
+                    }).then(async (result) => {
+                        if (result.isConfirmed) {
+
+                            const res = await axiosSecure.post("/uploadMaterial", uploadInfo)
+                            console.log(res?.data)
+                            if (res?.data?.insertedId) {
+                                Swal.fire({
+                                    title: "Uploaded!",
+                                    text: "Your file has been uploaded.",
+                                    icon: "success"
+                                });
+                            }
+                            navigate("/dashboard/allStudyMaterialByTutor")
+                        }
                     });
                 }
-                navigate("/dashboard/allStudyMaterialByTutor")
-            }
-        });
+            })
+
+
     }
 
 
@@ -80,7 +103,15 @@ const UploadMaterial = () => {
                         {...register("link", { required: true })}
                         type="link"
                         name="link"
-                        placeholder="google link"
+                        placeholder="google drive link"
+                        className="input input-bordered w-full max-w-xs" />
+                </div>
+                <div className="text-center mx-auto">
+                    <input
+                        {...register("image", { required: true })}
+                        type="file"
+                        name="image"
+                        placeholder="image file"
                         className="input input-bordered w-full max-w-xs" />
                 </div>
                 <div className="text-center">

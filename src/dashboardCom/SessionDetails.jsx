@@ -128,7 +128,7 @@ const SessionDetails = () => {
                                 </div>
                                 <div className="mt-5">
                                     {
-                                        (userData?.role === "Admin" || userData?.role === "Tutor") ? <p></p> : bookedData?.status === "booked" ?
+                                        (userData?.role === "Admin" || userData?.role === "Tutor") ? "" : bookedData?.status === "booked" ?
                                             <div className="border p-2 bg-[#2A0042]">
                                                 <p>Session Booked</p>
                                                 <Link to={`/dashboard/studyMaterial/${id}`}><button onClick={handleOpenMaterials} className="btn btn-warning">See Materials</button></Link>

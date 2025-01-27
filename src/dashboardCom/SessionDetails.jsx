@@ -148,12 +148,18 @@ const SessionDetails = () => {
                                     <div className="border border-red-100 m-2 p-2">
                                         <p>Reviews: </p>
                                         {
-                                            reviewData.map((review) =>
-                                                <ul className="text-white">
-                                                    <li>{review?.review}</li>
-                                                </ul>)
+                                            reviewData && reviewData.length > 0 ? (
+                                                reviewData.map((review, index) => (
+                                                    <ul className="text-white" key={index}>
+                                                        <li className="text-gray-400">{review?.review}</li>
+                                                    </ul>
+                                                ))
+                                            ) : (
+                                                <p className="text-gray-400">No reviews for this session</p>
+                                            )
                                         }
                                     </div>
+
                                 </div>
                                 <div className="mt-5">
                                     {
@@ -161,7 +167,7 @@ const SessionDetails = () => {
                                             bookedData?.status === "booked" ?
                                                 <div className="border p-2 bg-[#2A0042]">
                                                     <p>Session Booked</p>
-                                                    <Link to={`/dashboard/studyMaterial/${id}`}>
+                                                    <Link to={`/dashboard/bookedSession/${id}`}>
                                                         <button onClick={handleOpenMaterials} className="btn btn-warning">See Materials</button>
                                                     </Link>
                                                 </div>

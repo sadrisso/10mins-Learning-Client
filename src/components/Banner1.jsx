@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom';
 import useAdmin from '../hooks/useAdmin';
 import userTutor from '../hooks/userTutor';
 import useStudent from '../hooks/useStudent';
+import useAuth from '../hooks/useAuth';
 
 const Banner1 = () => {
 
     const [isAdmin] = useAdmin()
     const [isTutor] = userTutor()
     const [isStudent] = useStudent()
+    const { user } = useAuth()
 
 
     return (
@@ -78,9 +80,9 @@ const Banner1 = () => {
                                         Manage Personal Notes
                                     </li>
                                 </Link>
-                                <Link to="/dashboard/allStudyMaterialByTutor">
+                                <Link to={`/dashboard/studyMaterial/${user?.email}`}>
                                     <li className='hover:cursor-pointer text-gray-500 hover:text-red-500'>
-                                        All Study Materials By Tutor
+                                        Study Materials
                                     </li>
                                 </Link>
                             </div>

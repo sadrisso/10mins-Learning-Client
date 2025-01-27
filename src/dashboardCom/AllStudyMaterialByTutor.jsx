@@ -68,7 +68,7 @@ const AllStudyMaterialByTutor = () => {
                                 <div key={i} className='border p-2'>
                                     <h1 className='text-2xl text-gray-300'>{item?.title}</h1>
                                     <div className='text-gray-400'>
-                                        <p>Upload id: {item?.uploadMaterialId}</p>
+                                        <p>Session id: {item?.sessionId}</p>
                                         <p>Tutor Email: {item?.tutorEmail}</p>
                                         <p>{item?.link}</p>
                                     </div>

@@ -38,7 +38,7 @@ const UploadMaterial = () => {
                         title: data?.title,
                         link: data?.link,
                         tutorEmail: data?.tutorEmail,
-                        uploadMaterialId: data?.uploadMaterialId,
+                        sessionId: data?.sessionId,
                         image: res?.data?.data?.display_url
                     }
 
@@ -84,11 +84,11 @@ const UploadMaterial = () => {
                         placeholder="Title"
                         className="input input-bordered w-full max-w-xs mb-2 md:mb-0" />
                     <input
-                        {...register("uploadMaterialId", { required: true })}
+                        {...register("sessionId", { required: true })}
                         readOnly
                         defaultValue={id}
                         type="text"
-                        name="uploadMaterialId"
+                        name="sessionId"
                         className="input input-bordered w-full max-w-xs" />
                 </div>
                 <div className="text-center m-2 md:space-x-2">

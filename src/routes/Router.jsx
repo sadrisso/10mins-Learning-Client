@@ -20,6 +20,8 @@ import StudyMaterial from "../dashboardCom/StudyMaterial";
 import UploadMaterial from "../dashboardCom/UploadMaterial";
 import EditStudyMaterial from "../dashboardCom/EditStudyMaterial";
 import StudySessions from "../dashboardCom/StudySessions";
+import StudyMaterialByEmail from "../dashboardCom/StudyMaterialByEmail";
+import StudyMaterialById from "../dashboardCom/StudyMaterialById";
 
 
 
@@ -83,6 +85,14 @@ export const router = createBrowserRouter([
             {
                 path: "allStudyMaterialByTutor",
                 element: <AllStudyMaterialByTutor />
+            },
+            {
+                path: "studyMaterial/:email",
+                element: <StudyMaterialByEmail />
+            },
+            {
+                path: "bookedSession/:id",
+                element: <StudyMaterialById />
             },
             {
                 path: "sessionForUploadMaterial",

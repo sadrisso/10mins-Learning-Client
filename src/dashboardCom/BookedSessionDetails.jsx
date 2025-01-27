@@ -24,6 +24,7 @@ const BookedSessionDetails = () => {
         }
     })
 
+
     const handleBack = () => navigate(-1)
 
     const handleSubmit = (e) => {
@@ -32,7 +33,7 @@ const BookedSessionDetails = () => {
         const form = e.target;
         const review = form.review.value;
 
-        const studentReview = { review, bookedSessionId: id }
+        const studentReview = { review, studySessionId: data?.studySessionId }
 
         console.log(studentReview)
 

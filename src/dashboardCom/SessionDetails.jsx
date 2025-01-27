@@ -15,6 +15,7 @@ const SessionDetails = () => {
     const navigate = useNavigate()
     const [data, setData] = useState()
     const [bookedData, setBookedData] = useState()
+    const [reviewData, setReviewData] = useState([])
     const [payment, setPayment] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
     const { id } = useParams()
@@ -30,6 +31,20 @@ const SessionDetails = () => {
                 setIsLoading(false)
             })
     }, [])
+
+
+    useEffect(() => {
+        axiosSecure.get(`reviews/${id}`)
+            .then(res => {
+                console.log(res?.data)
+                setReviewData(res?.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }, [])
+
+    console.log("Review data --> ", reviewData)
 
 
     useEffect(() => {
@@ -130,7 +145,15 @@ const SessionDetails = () => {
                                 <div className="mt-5">
                                     <p>Session Duration: {data?.sessionDuration}hr</p>
                                     <p>Registration Fee: ${data?.registrationFee}</p>
-                                    <p>Review: </p>
+                                    <div className="border border-red-100 m-2 p-2">
+                                        <p>Reviews: </p>
+                                        {
+                                            reviewData.map((review) =>
+                                                <ul className="text-white">
+                                                    <li>{review?.review}</li>
+                                                </ul>)
+                                        }
+                                    </div>
                                 </div>
                                 <div className="mt-5">
                                     {

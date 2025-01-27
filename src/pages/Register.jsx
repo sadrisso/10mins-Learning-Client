@@ -6,6 +6,7 @@ import useAxiosSecure from '../hooks/useAxiosSecure';
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import useAxiosPublic from '../hooks/useAxiosPublic';
+import { useState } from 'react';
 const provider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
 
@@ -16,6 +17,7 @@ const Register = () => {
     const navigate = useNavigate();
     const axiosSecure = useAxiosSecure();
     const axiosPublic = useAxiosPublic();
+    const [error, setError] = useState("")
 
     const {
         register,
@@ -46,6 +48,7 @@ const Register = () => {
             })
             .catch(err => {
                 console.log("ERR: ", err)
+                setError(err?.message)
             })
     }
 
@@ -185,6 +188,7 @@ const Register = () => {
                             <button onClick={handleGoogleSignIn} className='btn btn-neutral mr-2'>Google <FaGoogle /></button>
                             <button onClick={handleGithubSignIn} className='btn btn-neutral'>Github <FaGithub /></button>
                         </div>
+                        <p className='text-center text-red-500'>{error}</p>
                         <p className='text-center p-2'>Have an account? <Link to="/login"><span className="text-blue-700">Login</span></Link></p>
                     </div>
                 </div>

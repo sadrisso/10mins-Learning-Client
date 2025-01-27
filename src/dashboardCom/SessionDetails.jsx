@@ -108,7 +108,13 @@ const SessionDetails = () => {
                 <SectionTitle heading="session details" subHeading="let's book your dream session" />
                 <div className="text-center md:border md:w-[500px] bg-[#0B1F24] md:mx-auto p-2 md:p-5 mx-5">
                     {
-                        isLoading ? <div><span className="loading loading-bars loading-md"></span> <br /> <p>Please Wait</p></div> :
+                        isLoading ?
+                            <div>
+                                <span className="loading loading-bars loading-md"></span>
+                                <br />
+                                <p>Please Wait</p>
+                            </div>
+                            :
                             <div>
                                 <h1 className="text-2xl">{data?.sessionTitle}</h1>
                                 <p className="text-gray-400">Tutor: {data?.tutorName}</p>
@@ -128,17 +134,27 @@ const SessionDetails = () => {
                                 </div>
                                 <div className="mt-5">
                                     {
-                                        (userData?.role === "Admin" || userData?.role === "Tutor") ? "" : bookedData?.status === "booked" ?
-                                            <div className="border p-2 bg-[#2A0042]">
-                                                <p>Session Booked</p>
-                                                <Link to={`/dashboard/studyMaterial/${id}`}><button onClick={handleOpenMaterials} className="btn btn-warning">See Materials</button></Link>
-                                            </div> :
-                                            <button onClick={handleBooking} className="btn btn-sm md:btn-md bg-[#43282D] text-white"> <FaBook /> Book Now</button>
+                                        (userData?.role === "Admin" || userData?.role === "Tutor") ? "" :
+                                            bookedData?.status === "booked" ?
+                                                <div className="border p-2 bg-[#2A0042]">
+                                                    <p>Session Booked</p>
+                                                    <Link to={`/dashboard/studyMaterial/${id}`}>
+                                                        <button onClick={handleOpenMaterials} className="btn btn-warning">See Materials</button>
+                                                    </Link>
+                                                </div>
+                                                :
+                                                new Date(data?.regEndDate) < new Date() ?
+                                                    <button className="btn btn-sm md:btn-md bg-gray-500 text-white cursor-not-allowed">Registration Closed</button>
+                                                    :
+                                                    <button onClick={handleBooking} className="btn btn-sm md:btn-md bg-[#43282D] text-white">
+                                                        <FaBook /> Book Now
+                                                    </button>
                                     }
                                 </div>
                             </div>
                     }
                 </div>
+
             </div>
         </div>
     );

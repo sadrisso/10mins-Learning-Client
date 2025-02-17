@@ -52,9 +52,7 @@ const AllStudyMaterialByTutor = () => {
     }
 
     return (
-        <div className='text-white md:min-h-screen text-center'>
-            <SectionTitle heading="study materials" subHeading="all study materials" />
-            <p className='text-gray-500'>All study materials ({allUploadedMaterials?.length})</p>
+        <div className='text-white md:min-h-screen text-center bg-[#010313]'>
             {
                 loading ?
                     <div className="py-5 text-center">
@@ -62,27 +60,33 @@ const AllStudyMaterialByTutor = () => {
                         <p className="text-2xl md:text-4xl">Please Wait</p>
                     </div>
                     :
-                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 container mx-auto px-2'>
-                        {
-                            allUploadedMaterials.map((item, i) =>
-                                <div key={i} className='border p-2'>
-                                    <h1 className='text-2xl text-gray-300'>{item?.title}</h1>
-                                    <div className='text-gray-400'>
-                                        <p>Session id: {item?.sessionId}</p>
-                                        <p>Tutor Email: {item?.tutorEmail}</p>
-                                        <p>{item?.link}</p>
-                                    </div>
-                                    {
-                                        !isStudent &&
-                                        <div className='my-2'>
-                                            <Link to={`/dashboard/editStudyMaterial/${item?._id}`}><button className='btn btn-xs mr-2'>Edit</button></Link>
-                                            <button className='btn btn-xs' onClick={() => handleDelete(item?._id)}>Delete</button>
+                    <div>
+                        <SectionTitle heading="study materials" subHeading="all study materials" />
+                        <p className='text-gray-500'>All study materials ({allUploadedMaterials?.length})</p>
+
+                        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 container mx-auto px-2'>
+                            {
+                                allUploadedMaterials.map((item, i) =>
+                                    <div key={i} className='bg-[#201236] p-2 rounded-md'>
+                                        <h1 className='text-2xl text-gray-300'>{item?.title}</h1>
+                                        <div className='text-gray-400'>
+                                            <p>Session id: {item?.sessionId}</p>
+                                            <p>Tutor Email: {item?.tutorEmail}</p>
+                                            <p>{item?.link}</p>
                                         </div>
-                                    }
-                                </div>)
-                        }
+                                        {
+                                            !isStudent &&
+                                            <div className='my-2'>
+                                                <Link to={`/dashboard/editStudyMaterial/${item?._id}`}><button className='btn btn-xs mr-2'>Edit</button></Link>
+                                                <button className='btn btn-xs' onClick={() => handleDelete(item?._id)}>Delete</button>
+                                            </div>
+                                        }
+                                    </div>)
+                            }
+                        </div>
                     </div>
             }
+
         </div>
     );
 };

@@ -59,7 +59,7 @@ const StudyMaterialByEmail = () => {
                                 ))
                             ) : (
                                 <div className="text-center col-span-full py-10">
-                                    <p className="text-2xl text-white">No sessions booked yet.</p>
+                                    <p className="text-2xl text-white">No material added yet.</p>
                                 </div>
                             )}
                         </div>

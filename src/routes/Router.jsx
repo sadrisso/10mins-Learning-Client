@@ -22,6 +22,7 @@ import EditStudyMaterial from "../dashboardCom/EditStudyMaterial";
 import StudySessions from "../dashboardCom/StudySessions";
 import StudyMaterialByEmail from "../dashboardCom/StudyMaterialByEmail";
 import StudyMaterialById from "../dashboardCom/StudyMaterialById";
+import AboutUs from "../pages/AboutUs";
 
 
 
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
             {
                 path: "/register",
                 element: <Register />
+            },
+            {
+                path: "/aboutUs",
+                element: <AboutUs />
             }
         ]
     },

@@ -29,7 +29,7 @@ const StudySessionCard = ({ item }) => {
 
     return (
         <div>
-            <div className="card bg-[#160929] h-[200px] md:w-[370px] md:my-10">
+            <div className="card bg-[#160929] h-[200px] md:w-[370px] md:my-6">
                 <div className="card-body">
                     <h2 className="card-title">{sessionTitle}</h2>
                     {/* <div className='text-xs'>

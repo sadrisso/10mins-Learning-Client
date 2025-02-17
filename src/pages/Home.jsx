@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import useAxiosPublic from '../hooks/useAxiosPublic';
 import StudySessionCard from '../components/StudySessionCard';
 import AllTutors from '../components/AllTutors';
+import Testimonials from '../components/Testimonials';
 
 
 const Home = () => {
@@ -28,7 +29,7 @@ const Home = () => {
                 <Banner />
             </div>
 
-            <div className='bg-[#010313] text-white py-10'>
+            <div className='bg-[#010313] text-white py-14'>
                 {
                     loading ?
                         <div className="py-5 text-center">
@@ -37,8 +38,8 @@ const Home = () => {
                         </div>
                         :
                         <div>
-                            <SectionTitle heading="Study Sessions" subHeading="let's start your study" />
-                            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 md:container md:mx-auto py-10 px-2'>
+                            <SectionTitle heading="Approved Sessions" subHeading="let's start your study" />
+                            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:container md:mx-auto py-2 px-2'>
                                 {
                                     sessions.map((item, i) => <StudySessionCard key={i} item={item} />)
                                 }
@@ -50,6 +51,11 @@ const Home = () => {
             <div>
                 <SectionTitle heading="all tutors" subHeading="Meet Our Tutors" />
                 <AllTutors />
+            </div>
+
+            <div className='bg-[#26144E] text-white py-10'>
+                <SectionTitle heading="reviews" subHeading="all reviews" />
+                <Testimonials />
             </div>
         </div>
     );

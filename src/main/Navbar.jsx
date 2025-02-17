@@ -37,11 +37,11 @@ const Navbar = () => {
     }
 
     return (
-        <div className="flex flex-col md:flex-row md:justify-between p-1 md:container md:mx-auto items-center">
-            <div className="flex items-center">
+        <div className="flex flex-col md:flex-row md:justify-between px-10 py-2 items-center fixed z-10 bg-white text-black w-full">
+            <Link className="flex items-center" to="/">
                 <img src={logo} alt="" className="w-[55px] h-[55px]" />
                 <span className="font-semibold">Learning</span>
-            </div>
+            </Link>
 
             <div>
                 <ul className="flex gap-3 md:gap-5 items-center">

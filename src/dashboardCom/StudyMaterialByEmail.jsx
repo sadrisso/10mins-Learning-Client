@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import SectionTitle from '../components/SectionTitle';
+import { IoChevronBackCircleSharp } from "react-icons/io5";
 
 
 const StudyMaterialByEmail = () => {
 
     const { email } = useParams()
     const [loading, setLoading] = useState(true)
+    const navigate = useNavigate()
     const axiosSecure = useAxiosSecure()
     const [allBookedData, setAllBookedData] = useState([])
 
@@ -29,6 +31,7 @@ const StudyMaterialByEmail = () => {
     //             console.log(err)
     //         })
     // }, [])
+    const handleBack = () => navigate(-1)
 
     console.log("booked data -->", allBookedData)
 
@@ -43,6 +46,7 @@ const StudyMaterialByEmail = () => {
                     :
                     <div>
                         <div>
+                            <p className="p-3" onClick={handleBack}><IoChevronBackCircleSharp className="text-3xl text-white m-2" /></p>
                             <SectionTitle heading="your bookings" subHeading="You booked this sessions" />
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-2 mx-auto container">

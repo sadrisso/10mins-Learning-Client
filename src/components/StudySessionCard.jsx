@@ -29,22 +29,21 @@ const StudySessionCard = ({ item }) => {
 
     return (
         <div>
-            <div className="card bg-base-200 border h-[300px] md:w-[370px]">
+            <div className="card bg-[#160929] h-[200px] md:w-[370px] md:my-10">
                 <div className="card-body">
                     <h2 className="card-title">{sessionTitle}</h2>
-                    <p>{sessionDescription}</p>
-                    <div className='text-xs'>
+                    {/* <div className='text-xs'>
                         <p>Registration Start Date: {regStartDate}</p>
                         <p>Registration End Date: {regEndDate}</p>
-                    </div>
+                    </div> */}
                     <p>{registrationFee === "0" ? "Free" : "$" + registrationFee}</p>
-                    <div className="card-actions justify-end">
+                    <div className="card-actions justify-evenly items-center">
                         {
-                            isRegistrationExpired ? <button className="btn btn-xs btn-outline">Closed</button>
+                            isRegistrationExpired ? <button className="btn btn-xs bg-red-400">Closed</button>
                                 :
-                                <button className="btn btn-xs btn-outline">Ongoing</button>
+                                <button className="btn btn-xs bg-[#AC46F8]">Ongoing</button>
                         }
-                        <Link to={`dashboard/sessionDetails/${_id}`}><button className="btn btn-xs bg-[#198B46] text-white">Read More</button></Link>
+                        <Link to={`dashboard/sessionDetails/${_id}`}><button className="btn btn-xs bg-[#7351FC]">Read More</button></Link>
                     </div>
                 </div>
             </div>

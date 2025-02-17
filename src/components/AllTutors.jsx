@@ -20,10 +20,15 @@ const AllTutors = () => {
     return (
         <>
             {
-                loading ? <div><p className='text-2xl text-center py-4'>Please Wait</p></div> :
+                loading ?
+                    <div className="py-5 text-center">
+                        <span className="loading loading-dots loading-lg"></span>
+                        <p className="text-2xl md:text-4xl">Please Wait</p>
+                    </div>
+                    :
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-5 container mx-auto mb-5 px-2'>
                         {tutors.map((tutor) =>
-                            <div className="card bg-base-100 border">
+                            <div className="card bg-[#F2F2F2]">
                                 <figure className="px-10 pt-10">
                                     <img
                                         src={tutor.photo}

@@ -23,7 +23,7 @@ const StudyMaterialById = () => {
     }, [])
 
     return (
-        <div className="min-h-screen text-white">
+        <div className="min-h-screen">
             <div>
                 <SectionTitle heading="All Materials" subHeading="materials added by tutor" />
             </div>
@@ -31,7 +31,7 @@ const StudyMaterialById = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-2 mx-auto container">
                 {materials && materials.length > 0 ? (
                     materials.map((material, i) => (
-                        <div key={i} className="text-center md:border md:w-[500px] bg-[#0B1F24] md:mx-auto p-2 md:p-5 mx-5 py-8">
+                        <div key={i} className="text-center md:border md:w-[500px] bg-[#E8EDEB] md:mx-auto p-2 md:p-5 mx-5 py-8">
                             <h1 className="text-2xl">{material?.title}</h1>
                             <img src={material?.image} alt="" className="w-[200px] h-[150px] mx-auto" />
                             <p className="text-gray-400">Tutor: {material?.tutorEmail}</p>

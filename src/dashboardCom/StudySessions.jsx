@@ -21,10 +21,10 @@ const StudySessions = () => {
     console.log(allSessions)
 
     return (
-        <div className='text-white min-h-screen'>
+        <div className='min-h-screen'>
             {
                 isLoading ?
-                    <div className='text-white text-center py-10'>
+                    <div className='text-center py-10'>
                         <span className="loading loading-dots loading-lg"></span>
                         <p className="text-4xl">Please Wait</p>
                     </div>

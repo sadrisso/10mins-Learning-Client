@@ -118,10 +118,10 @@ const SessionDetails = () => {
 
     return (
         <div>
-            <p className="p-3" onClick={handleBack}><IoChevronBackCircleSharp className="text-3xl text-white m-2" /></p>
-            <div className="container mx-auto h-[600px] md:min-h-screen text-white">
+            <p className="p-3" onClick={handleBack}><IoChevronBackCircleSharp className="text-3xl m-2" /></p>
+            <div className="container mx-auto h-[600px] md:min-h-screen">
                 <SectionTitle heading="session details" subHeading="let's book your dream session" />
-                <div className="text-center md:border md:w-[500px] bg-[#0B1F24] md:mx-auto p-2 md:p-5 mx-5">
+                <div className="text-center md:border md:w-[500px] md:mx-auto p-2 md:p-5 mx-5">
                     {
                         isLoading ?
                             <div>

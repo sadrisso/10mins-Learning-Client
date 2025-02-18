@@ -54,8 +54,8 @@ const PersonalNote = () => {
 
 
     return (
-        <div className='text-white mx-auto'>
-            <p className="p-3" onClick={handleBack}><IoChevronBackCircleSharp className="text-3xl text-white m-2" /></p>
+        <div className='mx-auto'>
+            <p className="p-3" onClick={handleBack}><IoChevronBackCircleSharp className="text-3xl m-2" /></p>
             <div>
                 <SectionTitle subHeading="all your notes here" heading="Personal Notes" />
                 <Link to="/dashboard/createNote"><li className='hover:cursor-pointer text-center list-none text-gray-500 hover:text-red-500 rounded-md'><a>Create Note</a></li></Link>
@@ -65,7 +65,7 @@ const PersonalNote = () => {
                 loading ?
                     <div className='text-center py-10'>
                         <span className="loading loading-dots loading-lg"></span>
-                        <p className="text-white text-4xl">Please Wait</p>
+                        <p className="text-4xl">Please Wait</p>
                     </div>
                     :
                     (

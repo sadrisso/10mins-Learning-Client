@@ -58,13 +58,13 @@ const BookedSessionDetails = () => {
 
     return (
         <div className="min-h-screen">
-            <p className="p-3" onClick={handleBack}><IoChevronBackCircleSharp className="text-3xl text-white m-2" /></p>
-            <div className="text-white">
+            <p className="p-3" onClick={handleBack}><IoChevronBackCircleSharp className="text-3xl m-2" /></p>
+            <div className="">
                 <SectionTitle heading="booked details" subHeading="let's add your review" />
             </div>
             {
                 loading ?
-                    <div className="text-white text-center py-10">
+                    <div className="text-center py-5">
                         <span className="loading loading-dots loading-lg"></span>
                         <p className="text-4xl">Please Wait</p>
                     </div>

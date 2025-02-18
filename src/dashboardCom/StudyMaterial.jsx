@@ -24,7 +24,7 @@ const StudyMaterials = () => {
 
 
     return (
-        <div className='min-h-screen text-white'>
+        <div className='min-h-screen'>
             <SectionTitle heading="Study Material" subHeading="study material by tutor" />
             {studyMaterial.length === 0 ? (
                 <p>No material added for this session.</p>

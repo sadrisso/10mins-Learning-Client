@@ -67,9 +67,9 @@ const AllStudyMaterialByTutor = () => {
                         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 container mx-auto px-2'>
                             {
                                 allUploadedMaterials.map((item, i) =>
-                                    <div key={i} className='bg-[#201236] p-2 rounded-md'>
-                                        <h1 className='text-2xl text-gray-300'>{item?.title}</h1>
-                                        <div className='text-gray-400'>
+                                    <div key={i} className='bg-[#E8EDEB] p-2 rounded-md'>
+                                        <h1 className='text-2xl '>{item?.title}</h1>
+                                        <div className=''>
                                             <p>Session id: {item?.sessionId}</p>
                                             <p>Tutor Email: {item?.tutorEmail}</p>
                                             <p>{item?.link}</p>

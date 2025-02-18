@@ -24,23 +24,23 @@ const AllStudySessions = () => {
     const handleBack = () => navigate(-1)
 
     return (
-        <div className='bg-[#010313] min-h-screen'>
+        <div className='min-h-screen'>
             {
                 isLoading ?
-                    <div className='text-white text-center py-5'>
+                    <div className='text-center py-5'>
                         <span className="loading loading-dots loading-lg"></span>
                         <p className="text-2xl md:text-4xl">Please Wait</p>
                     </div>
                     :
                     <div>
-                        <p className="p-3" onClick={handleBack}><IoChevronBackCircleSharp className="text-3xl text-white m-2" /></p>
+                        <p className="p-3" onClick={handleBack}><IoChevronBackCircleSharp className="text-3xl m-2" /></p>
                         <div>
-                            <div className='text-white'>
+                            <div>
                                 <SectionTitle heading="all study sessions" subHeading="checkout all" />
                             </div>
 
 
-                            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 md:container md:mx-auto py-10 px-4 md:px-2'>
+                            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 md:mx-auto py-10 px-4 md:px-2'>
                                 {
                                     allSessions.map((item, i) => <AdminStudySessionCard key={i} item={item} refetch={refetch} />)
                                 }

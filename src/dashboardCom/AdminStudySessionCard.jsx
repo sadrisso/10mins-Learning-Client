@@ -117,7 +117,7 @@ const AdminStudySessionCard = ({ item, refetch }) => {
 
     return (
         <div>
-            <div className="card text-white h-[300px] md:w-[370px]">
+            <div className="card h-[300px] border bg-[#E8EDEB]">
                 <div className="card-body">
                     <h2 className="card-title">{sessionTitle}</h2>
                     <p>{sessionDescription}</p>

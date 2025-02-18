@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
-import { FaHome } from 'react-icons/fa';
+import { FaHome, FaUser } from 'react-icons/fa';
 import { PiStudentBold } from 'react-icons/pi';
 import useAdmin from '../hooks/useAdmin';
 import userTutor from '../hooks/userTutor';
@@ -32,6 +32,10 @@ const Dashboard = () => {
                 <Link to="/dashboard" className='flex items-center gap-2 text-gray-300 hover:text-white hover:bg-white/10 p-3 rounded-lg transition-all duration-200 mx-6 border-b border-white/10'>
                     <FaHome />
                     <p>Dashboard</p>
+                </Link>
+                <Link to="/dashboard/profile" className='flex items-center gap-2 text-gray-300 hover:text-white hover:bg-white/10 p-3 rounded-lg transition-all duration-200 mx-6 border-b border-white/10'>
+                    <FaUser />
+                    <p>Profile</p>
                 </Link>
                 <div className='p-6 space-y-6'>
                     {/* Admin Section */}

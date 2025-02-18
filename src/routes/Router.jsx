@@ -25,7 +25,8 @@ import AboutUs from "../pages/AboutUs";
 import DashboardLanding from "../components/DashboardLanding";
 import Sessions from "../pages/Sessions";
 import Contact from "../pages/Contact";
-import Details from "../pages/Details";
+import Profile from "../dashboardCom/Profile";
+import ErrorPage from "../pages/ErrorPage";
 
 
 
@@ -34,6 +35,7 @@ export const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout />,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: "/",
@@ -133,6 +135,10 @@ export const router = createBrowserRouter([
             {
                 path: "bookedSessionDetails/:id",
                 element: <BookedSessionDetails />,
+            },
+            {
+                path: "profile",
+                element: <Profile />
             }
         ]
     }

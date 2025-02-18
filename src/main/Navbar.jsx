@@ -76,7 +76,7 @@ const Navbar = () => {
                                 About Us
                             </Link>
                         </li>
-                        <Link to="/contact">
+                        <Link to="/contact" onClick={toggleDropdown} className="block px-4 py-2 hover:bg-gray-100">
                             Contact
                         </Link>
                         <li>
@@ -91,7 +91,14 @@ const Navbar = () => {
                                 <Link to="/dashboard" onClick={toggleDropdown} className="block px-4 py-2 hover:bg-gray-100">
                                     Dashboard
                                 </Link>
+                                <button
+                                    onClick={handleLogOut}
+                                    className="bg-[#12214A] btn btn-sm md:btn-md text-white block px-4 py-2 hover:bg-gray-100"
+                                >
+                                    LogOut
+                                </button>
                             </li>
+
                         )}
                     </ul>
                 </div>

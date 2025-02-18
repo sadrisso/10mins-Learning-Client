@@ -53,7 +53,7 @@ const Home = () => {
                 <AllTutors />
             </div>
 
-            <div className='bg-[#26144E] text-white py-10'>
+            <div className='bg-[#010313] text-white py-10'>
                 <SectionTitle heading="reviews" subHeading="all reviews" />
                 <Testimonials />
             </div>

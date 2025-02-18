@@ -52,7 +52,7 @@ const AllStudyMaterialByTutor = () => {
     }
 
     return (
-        <div className='text-white md:min-h-screen text-center bg-[#010313]'>
+        <div className='md:min-h-screen text-center'>
             {
                 loading ?
                     <div className="py-5 text-center">

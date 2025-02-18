@@ -28,7 +28,7 @@ const AllTutors = () => {
                     :
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-5 container mx-auto mb-5 px-2'>
                         {tutors.map((tutor) =>
-                            <div className="card bg-[#F2F2F2]">
+                            <div className="card bg-[#171829]">
                                 <figure className="px-10 pt-10">
                                     <img
                                         src={tutor.photo}

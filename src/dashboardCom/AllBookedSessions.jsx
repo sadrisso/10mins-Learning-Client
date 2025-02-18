@@ -42,12 +42,12 @@ const AllBookedSessions = () => {
                             allBookedData.map((bookedData) => (
                                 <div
                                     key={bookedData?._id}
-                                    className="text-center md:mx-auto p-2 md:p-5 mx-5 py-8 border bg-[#E8EDEB]"
+                                    className="text-center mx-auto p-2 md:p-5 mx-5 py-8 border bg-white w-full md:w-[350px]"
                                 >
                                     <h1 className="text-2xl">{bookedData?.sessionTitle}</h1>
                                     <p className="text-gray-400">Tutor: {bookedData?.tutorName}</p>
                                     <Link to={`/dashboard/bookedSessionDetails/${bookedData?._id}`}>
-                                        <button className="btn btn-wide">View Details</button>
+                                        <button className="btn btn-sm mt-5">View Details</button>
                                     </Link>
                                 </div>
                             ))

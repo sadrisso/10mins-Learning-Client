@@ -13,7 +13,7 @@ const MainLayout = () => {
                 <Navbar />
             </div>
 
-            <div className="min-h-[calc(100vh-270px)]">
+            <div className="min-h-[calc(100vh-55px)] bg-[#010313]">
                 <Outlet />
                 <ToastContainer
                     position="bottom-center"

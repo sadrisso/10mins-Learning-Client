@@ -54,7 +54,7 @@ const PersonalNote = () => {
 
 
     return (
-        <div className='mx-auto'>
+        <div className='mx-auto bg-[#F9FAF9]'>
             <p className="p-3" onClick={handleBack}><IoChevronBackCircleSharp className="text-3xl m-2" /></p>
             <div>
                 <SectionTitle subHeading="all your notes here" heading="Personal Notes" />
@@ -69,11 +69,11 @@ const PersonalNote = () => {
                     </div>
                     :
                     (
-                        <div className="text-white container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 p-2 md:p-0 md:h-[800px]">
+                        <div className="text-white container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 p-2 md:p-0 md:h-[700px] overflow-scroll">
                             {notes.length > 0 ? (
                                 notes.map((note, i) => (
                                     <div key={i}>
-                                        <div className="card bg-neutral text-neutral-content md:h-[300px]">
+                                        <div className="card bg-white md:h-[300px] text-black">
                                             <div className="card-body items-center text-center">
                                                 <h2 className="card-title">{note?.title}</h2>
                                                 <p>{note?.description}</p>

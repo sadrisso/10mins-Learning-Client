@@ -57,7 +57,7 @@ const EditStudyMaterial = () => {
     console.log(studyMaterial)
 
     return (
-        <div className='min-h-screen text-white'>
+        <div className='min-h-screen'>
             <SectionTitle heading="update material" subHeading="you can modify your uploaded material" />
 
             <form onSubmit={handleSubmit} className="text-black md:space-y-2">

@@ -76,9 +76,12 @@ const Navbar = () => {
                                 About Us
                             </Link>
                         </li>
+                        <Link to="/contact">
+                            Contact
+                        </Link>
                         <li>
-                            <Link to="/contact" onClick={toggleDropdown} className="block px-4 py-2 hover:bg-gray-100">
-                                Contact
+                            <Link to="/sessions" onClick={toggleDropdown} className="block px-4 py-2 hover:bg-gray-100">
+                                Sessions
                             </Link>
                         </li>
 
@@ -103,13 +106,16 @@ const Navbar = () => {
                         <Link to="/aboutUs">About Us</Link>
                     </li>
                     <li>
-                        <Link to="/contact">Contact</Link>
+                        <Link to="/sessions">
+                            Sessions
+                        </Link>
                     </li>
 
                     {/* Show Dashboard only if user is logged in */}
                     {user && (
-                        <li>
+                        <li className="flex gap-5">
                             <Link to="/dashboard">Dashboard</Link>
+                            <Link to="/contact">Contact</Link>
                         </li>
                     )}
 

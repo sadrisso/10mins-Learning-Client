@@ -6,7 +6,6 @@ import Register from "../pages/Register";
 import Dashboard from "../pages/Dashboard";
 import StudySession from "../dashboardCom/StudySession";
 import AllStudySessions from "../dashboardCom/AllStudySessions";
-import Banner1 from "../components/Banner1";
 import PrivateRoute from "./PrivateRoute";
 import SessionDetails from "../dashboardCom/SessionDetails";
 import AllBookedSessions from "../dashboardCom/AllBookedSessions";
@@ -23,6 +22,10 @@ import StudySessions from "../dashboardCom/StudySessions";
 import StudyMaterialByEmail from "../dashboardCom/StudyMaterialByEmail";
 import StudyMaterialById from "../dashboardCom/StudyMaterialById";
 import AboutUs from "../pages/AboutUs";
+import DashboardLanding from "../components/DashboardLanding";
+import Sessions from "../pages/Sessions";
+import Contact from "../pages/Contact";
+import Details from "../pages/Details";
 
 
 
@@ -47,7 +50,15 @@ export const router = createBrowserRouter([
             {
                 path: "/aboutUs",
                 element: <AboutUs />
-            }
+            },
+            {
+                path: "/sessions",
+                element: <Sessions />
+            },
+            {
+                path: "/contact",
+                element: <Contact />
+            },
         ]
     },
     {
@@ -56,7 +67,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: "/dashboard",
-                element: <Banner1 />
+                element: <DashboardLanding />
             },
             {
                 path: "users",

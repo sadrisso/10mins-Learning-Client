@@ -46,7 +46,7 @@ const StudyMaterialByEmail = () => {
                                     <Link className="cursor-pointer" to={`/dashboard/bookedSession/${bookedData?.studySessionId}`}>
                                         <div
                                             key={bookedData?._id}
-                                            className="text-center border md:mx-auto p-2 md:p-5 mx-5 py-8 h-[200px] bg-[#E8EDEB]">
+                                            className="text-center border md:mx-auto p-2 md:p-5 mx-5 py-8 h-[200px] bg-white">
                                             <h1 className="text-2xl">{bookedData?.sessionTitle}</h1>
                                             <p className="text-gray-400">Tutor: {bookedData?.tutorName}</p>
                                         </div>

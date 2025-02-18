@@ -46,7 +46,7 @@ const CreateNote = () => {
     return (
         <div className="md:min-h-screen h-[500px]">
             <p className="p-3" onClick={handleBack}><IoChevronBackCircleSharp className="text-3xl m-2" /></p>
-            <div className="text-center pt-10">
+            <div className="text-center p-10 bg-white">
                 <h1 className="font-semibold text-2xl md:text-4xl ">Create Your Note Here</h1>
                 <Link to="/dashboard/personalNotes"><li className='hover:cursor-pointer text-gray-500 hover:text-red-500 rounded-md list-none'><a>Manage personal notes</a></li></Link>
                 <form className="text-black" onSubmit={handleSubmit(onSubmit)}>

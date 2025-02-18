@@ -33,8 +33,8 @@ const StudySessions = () => {
                         {
                             allSessions.map((item, i) =>
                                 <div key={i} className='border m-2 p-2'>
-                                    <p>Session Title: <span className='text-gray-300'>{item?.sessionTitle}</span></p>
-                                    <div className='text-xs text-gray-400 mb-2'>
+                                    <p className='text-gray-500'>Session Title: <span className='text-gray-800'>{item?.sessionTitle}</span></p>
+                                    <div className='text-xs text-gray-500 mb-2'>
                                         <p>{item?.tutorName}</p>
                                         <p>{item?.tutorEmail}</p>
                                     </div>

@@ -6,6 +6,7 @@ import useAxiosPublic from '../hooks/useAxiosPublic';
 import StudySessionCard from '../components/StudySessionCard';
 import AllTutors from '../components/AllTutors';
 import Testimonials from '../components/Testimonials';
+import Sessions from './Sessions';
 
 
 const Home = () => {
@@ -48,7 +49,7 @@ const Home = () => {
                 }
             </div>
 
-            <div>
+            <div className='text-white'>
                 <SectionTitle heading="all tutors" subHeading="Meet Our Tutors" />
                 <AllTutors />
             </div>
@@ -56,6 +57,10 @@ const Home = () => {
             <div className='bg-[#010313] text-white py-10'>
                 <SectionTitle heading="reviews" subHeading="all reviews" />
                 <Testimonials />
+            </div>
+
+            <div>
+                <Sessions />
             </div>
         </div>
     );

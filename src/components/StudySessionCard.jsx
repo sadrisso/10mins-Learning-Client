@@ -32,10 +32,6 @@ const StudySessionCard = ({ item }) => {
             <div className="card bg-[#160929] h-[200px] md:w-[370px] md:my-6">
                 <div className="card-body">
                     <h2 className="card-title">{sessionTitle}</h2>
-                    {/* <div className='text-xs'>
-                        <p>Registration Start Date: {regStartDate}</p>
-                        <p>Registration End Date: {regEndDate}</p>
-                    </div> */}
                     <p>{registrationFee === "0" ? "Free" : "$" + registrationFee}</p>
                     <div className="card-actions justify-evenly items-center">
                         {

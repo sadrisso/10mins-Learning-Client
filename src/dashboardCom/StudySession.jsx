@@ -47,8 +47,8 @@ const StudySession = () => {
 
     return (
         <div>
-            <p className="p-3" onClick={handleBack}><IoChevronBackCircleSharp className="text-3xl text-white m-2" /></p>
-            <div className="text-white pb-10 mx-auto container">
+            <p className="p-3" onClick={handleBack}><IoChevronBackCircleSharp className="text-3xl m-2" /></p>
+            <div className="pb-10 mx-auto container">
                 <SectionTitle heading="Create study session" subHeading="let's create your study session" />
 
                 <form className="text-center space-y-3 text-black" onSubmit={handleSubmit(onSubmit)}>

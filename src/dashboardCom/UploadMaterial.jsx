@@ -73,7 +73,7 @@ const UploadMaterial = () => {
 
 
     return (
-        <div className="min-h-screen text-white">
+        <div className="min-h-screen">
             <SectionTitle heading="upload material" subHeading="upload material for this session now" />
             <form onSubmit={handleSubmit(onSubmit)} className="text-black md:space-y-2">
                 <div className="text-center m-2 md:space-x-2">

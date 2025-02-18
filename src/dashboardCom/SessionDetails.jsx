@@ -6,12 +6,14 @@ import { FaBook } from "react-icons/fa";
 import { IoChevronBackCircleSharp } from "react-icons/io5";
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 
 
 const SessionDetails = () => {
 
     const axiosSecure = useAxiosSecure()
+    const axiosPublic = useAxiosPublic()
     const navigate = useNavigate()
     const [data, setData] = useState()
     const [bookedData, setBookedData] = useState()
@@ -25,7 +27,7 @@ const SessionDetails = () => {
 
 
     useEffect(() => {
-        axiosSecure.get(`studySession/${id}`)
+        axiosPublic.get(`studySession/${id}`)
             .then((res) => {
                 setData(res?.data)
                 setIsLoading(false)

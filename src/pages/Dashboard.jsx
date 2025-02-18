@@ -16,15 +16,23 @@ const Dashboard = () => {
     const [isStudent] = useStudent()
 
     return (
-        <div className='flex'>
+        <div className='flex flex-col md:flex-row'>
             {/* Sidebar */}
-            <div className='bg-gradient-to-b from-[#BC44F7] to-[#6A1B9A] w-1/5 min-h-screen fixed z-10 shadow-lg'>
+            <div className='bg-gradient-to-b from-[#BC44F7] to-[#6A1B9A] w-full md:w-1/5 md:min-h-screen md:fixed z-10 shadow-lg'>
                 <div className='p-6 border-b border-white/10'>
                     <Link className="flex items-center justify-center gap-2" to="/">
                         <PiStudentBold className="text-3xl text-white" />
                         <span className="font-semibold text-white text-xl">Learning</span>
                     </Link>
                 </div>
+                <Link to="/" className='flex items-center gap-2 text-gray-300 hover:text-white hover:bg-white/10 p-3 rounded-lg transition-all duration-200 mx-6 border-b border-white/10'>
+                    <FaHome />
+                    <p>Home</p>
+                </Link>
+                <Link to="/dashboard" className='flex items-center gap-2 text-gray-300 hover:text-white hover:bg-white/10 p-3 rounded-lg transition-all duration-200 mx-6 border-b border-white/10'>
+                    <FaHome />
+                    <p>Dashboard</p>
+                </Link>
                 <div className='p-6 space-y-6'>
                     {/* Admin Section */}
                     {isAdmin && (
@@ -91,7 +99,7 @@ const Dashboard = () => {
             </div>
 
             {/* Main Content */}
-            <div className='min-h-screen w-4/5 ml-[20%] p-8 bg-gray-50'>
+            <div className='min-h-screen w-full md:w-4/5 md:ml-[20%] p-8 bg-gray-50'>
                 <Outlet />
             </div>
         </div>

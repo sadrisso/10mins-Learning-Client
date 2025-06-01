@@ -7,6 +7,8 @@ import StudySessionCard from '../components/StudySessionCard';
 import AllTutors from '../components/AllTutors';
 import Testimonials from '../components/Testimonials';
 import Sessions from './Sessions';
+import PlatformFeatures from '../components/PlatformFeatures';
+import AboutUs from './AboutUs';
 
 
 const Home = () => {
@@ -28,6 +30,14 @@ const Home = () => {
         <div>
             <div>
                 <Banner />
+            </div>
+
+            <div>
+                <PlatformFeatures />
+            </div>
+
+            <div>
+                <AboutUs/>
             </div>
 
             <div className='bg-[#010313] text-white py-14'>

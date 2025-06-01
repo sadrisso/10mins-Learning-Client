@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
 import { PiStudentBold } from "react-icons/pi";
@@ -46,7 +46,7 @@ const Navbar = () => {
       : "hover:text-[#1CAB55] transition duration-150";
 
   return (
-    <div className="flex flex-col md:flex-row md:justify-between px-6 md:px-10 py-3 items-center fixed z-10 bg-[#F2F2F2] text-black w-full shadow-sm">
+    <div className="flex flex-col md:flex-row md:justify-between px-6 md:px-10 py-3 items-center fixed z-10 bg-[#160929] text-white w-full shadow-sm">
       {/* Logo */}
       <NavLink className="flex items-center gap-2 text-lg font-semibold" to="/">
         <PiStudentBold className="text-3xl" />
@@ -68,7 +68,7 @@ const Navbar = () => {
 
           {/* Mobile Dropdown */}
           <ul
-            className={`absolute right-0 mt-2 bg-white shadow-lg rounded-lg p-3 space-y-2 z-20 text-sm w-48 ${
+            className={`absolute right-0 mt-2 bg-white text-black shadow-lg rounded-lg p-3 space-y-2 z-20 text-sm w-48 ${
               isOpen ? "block" : "hidden"
             }`}
           >
@@ -173,7 +173,7 @@ const Navbar = () => {
               >
                 LogOut
               </button>
-              <div className="relative group">
+              <Link to="/dashboard/profile" className="relative group">
                 <img
                   src={user?.photoURL}
                   alt="User"
@@ -182,7 +182,7 @@ const Navbar = () => {
                 <ul className="absolute hidden group-hover:block right-0 bg-white shadow-lg rounded-lg mt-2 text-xs w-48 p-2 z-20">
                   <li className="px-2 py-1 text-gray-600">{user?.email}</li>
                 </ul>
-              </div>
+              </Link>
             </>
           ) : (
             <li>

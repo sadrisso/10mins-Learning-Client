@@ -23,13 +23,13 @@ const Profile = () => {
                     <div className='flex flex-col items-center space-y-6'>
                         {/* Profile Picture */}
                         <img
-                            src={user.photoURL}
+                            src={user?.photoURL}
                             alt='Profile'
                             className='w-32 h-32 rounded-full border-4 border-blue-500'
                         />
 
                         {/* Display Name */}
-                        <h2 className='text-2xl font-bold text-gray-900'>{user.displayName}</h2>
+                        <h2 className='text-2xl font-bold text-gray-900'>{user?.displayName}</h2>
 
                         {/* Email */}
                         <div className='flex items-center gap-2'>
@@ -47,7 +47,7 @@ const Profile = () => {
                                     d='M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z'
                                 />
                             </svg>
-                            <p className='text-gray-700'>{user.email}</p>
+                            <p className='text-gray-700'>{user?.email}</p>
                         </div>
 
                         {/* Email Verification Status */}
@@ -67,7 +67,7 @@ const Profile = () => {
                                 />
                             </svg>
                             <p className='text-gray-700'>
-                                {user.emailVerified ? 'Email Verified' : 'Email Not Verified'}
+                                {user?.emailVerified ? 'Email Verified' : 'Email Not Verified'}
                             </p>
                         </div>
 
@@ -88,7 +88,7 @@ const Profile = () => {
                                 />
                             </svg>
                             <p className='text-gray-700'>
-                                Signed in with {user.providerData[0].providerId}
+                                Signed in with {user?.providerData[0].providerId}
                             </p>
                         </div>
                     </div>

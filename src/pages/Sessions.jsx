@@ -37,7 +37,7 @@ const Sessions = () => {
                         {
                             sessions.map((session, i) =>
                                 <div key={i}>
-                                    <div className="card bg-[#160929] text-white mx-auto shadow-xl h-[150px]">
+                                    <div className="card bg-[#160929] mx-auto shadow-xl h-[160px]">
                                         <div className="card-body">
                                             <h2 className="card-title">{session?.sessionTitle}</h2>
                                             <p className='text-gray-400'>{session?.status}</p>

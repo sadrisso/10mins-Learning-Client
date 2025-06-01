@@ -15,7 +15,7 @@ const SessionDetails = () => {
     const axiosSecure = useAxiosSecure()
     const axiosPublic = useAxiosPublic()
     const navigate = useNavigate()
-    const [data, setData] = useState()
+    const [data, setData] = useState([])
     const [bookedData, setBookedData] = useState()
     const [reviewData, setReviewData] = useState([])
     const [payment, setPayment] = useState(false)
@@ -47,6 +47,7 @@ const SessionDetails = () => {
     }, [])
 
     console.log("Review data --> ", reviewData)
+    console.log("Details data --> ", data)
 
 
     useEffect(() => {
@@ -192,9 +193,3 @@ const SessionDetails = () => {
 };
 
 export default SessionDetails;
-
-
-// tutorEmail: data?.tutorEmail,
-//     tutorName: data?.tutorName,
-//         sessionTitle: data?.sessionTitle,
-//             sessionDescription: data?.sessionDescription,
